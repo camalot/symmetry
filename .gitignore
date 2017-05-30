@@ -7,6 +7,8 @@ Desktop.ini
 
 # Thumbnail cache files
 ._*
+# not symmetry files
+!._symmetry.*
 Thumbs.db
 
 # Files that might appear on external disks
