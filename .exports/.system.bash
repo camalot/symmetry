@@ -51,6 +51,8 @@ shopt -s dotglob
 shopt -s nocaseglob;
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell;
+# add extended glob syntax
+shopt -s extglob;
 
 # Enable some Bash 4 features when possible:
 # * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`

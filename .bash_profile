@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+source $HOME/.functions/._dotfiles.bash
+
 __load_config_files functions
 
 __load_config_files exports
