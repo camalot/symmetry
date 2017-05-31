@@ -9,7 +9,7 @@ function load_prompt() {
 	if [ -f "$HOME/.prompts/.$prompt_profile.bash" ]; then
 		source $HOME/.prompts/.$prompt_profile.bash;
 	else
-		echo "prompt '$prompt_profile' not found"
+		echo "prompt '$prompt_profile' not found";
 	fi
 }
 

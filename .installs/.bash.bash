@@ -12,6 +12,8 @@ if command -v uname > /dev/null; then
 	esac
 fi
 
-sudo -s
-echo /usr/local/bin/bash >> /etc/shells
-chsh -s /usr/local/bin/bash
+if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
+	sudo -s
+	echo /usr/local/bin/bash >> /etc/shells
+	chsh -s /usr/local/bin/bash
+fi

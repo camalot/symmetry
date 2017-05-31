@@ -60,3 +60,11 @@ shopt -s extglob;
 for option in autocd globstar; do
 	shopt -s "$option" 2> /dev/null;
 done;
+
+DF_PLATFORM=$(dotfiles_platform);
+if [ -f "$HOME/.exports/.system.${DF_PLATFORM}.bash" ]; then
+	# source the specific system functions file
+	source $HOME/.exports/.system.${DF_PLATFORM}.bash;
+fi
+
+unset DF_PLATFORM

@@ -207,9 +207,9 @@ function o() {
 }
 
 DF_PLATFORM=$(dotfiles_platform);
-if [ -f "$HOME/.functions/.${DF_PLATFORM}" ]; then
+if [ -f "$HOME/.functions/.system.${DF_PLATFORM}.bash" ]; then
 	# source the specific system functions file
-
+	source $HOME/.functions/.system.${DF_PLATFORM}.bash;
 fi
 
 unset DF_PLATFORM
