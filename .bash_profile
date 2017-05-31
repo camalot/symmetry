@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-source $HOME/.functions/._dotfiles.bash
+source $HOME/.functions/._symmetry.bash
 
 __load_config_files functions
 

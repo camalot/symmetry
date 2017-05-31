@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+SYMMETRY_VERSION='0.0.1';
+
+if [ $# -eq 0 ]; then
+	__print_help;
+else
+	__process_commands $*
+fi
+
+function __print_help() {
+	echo "Symmetry v$SYMMETRY_VERSION\nCopyright (c) Ryan Conrad 2017. All Rights Reserved.\n\n";
+	echo "Usage: $0 [command] [args]";
+}
+function __process_commands() {
+	case "$1" in
+		-v|--version)
+			echo "Symmetry v$SYMMETRY_VERSION";
+			shift;
+		;;
+		install)
+			shift;
+		;;
+		*)
+			__print_help;
+			shift;
+		;;
+	esac
+}
+
+unset SYMMETRY_VERSION
