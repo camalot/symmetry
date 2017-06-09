@@ -1,14 +1,18 @@
 #!/usr/bin/env bash
-source $HOME/.functions/._symmetry.bash
+source $HOME/.functions/._symmetry.bash;
 
-__load_config_files functions
+__load_config_files 'functions';
 
-__load_config_files exports
+__load_config_files 'exports';
 
-__load_local_files
+__load_local_files;
 
-__load_config_files aliases
-__load_config_files completion
-__load_config_files extras
+__load_config_files 'aliases';
+__load_config_files 'completion';
+__load_config_files 'extras';
 
-load_prompt 'default'
+eval "$(rbenv init -)";
+
+load_prompt 'default';
+
+__system_logo;

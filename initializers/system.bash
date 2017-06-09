@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-if [ -d "$HOME/.ssh" ]; then
+source $PWD/.functions/._symmetry.bash
+
+auth_keys=$PWD/initializers/.authorized_keys;
+if [ -d "$HOME/.ssh" ] && [ -f $auth_keys ]; then
 	if [ ! -f "$HOME/.ssh/authorized_keys" ]; then
-		cp ".authorized_keys" "$HOME/.ssh/authorized_keys"
+		cp "$auth_keys" "$HOME/.ssh/authorized_keys"
 	else
 		while IFS='' read -r line || [[ -n "$line" ]]; do
 			if grep -Fxq "$line" "$HOME/.ssh/authorized_keys"; then
@@ -10,6 +13,10 @@ if [ -d "$HOME/.ssh" ]; then
 			else
 				echo "$line" >> "$HOME/.ssh/authorized_keys"
 			fi
-		done < ".authorized_keys"
+		done < "$auth_keys"
 	fi
 fi
+
+SYMMETRY_PLATFORM=$(dotfiles_platform);
+source $PWD/initializers/$SYMMETRY_PLATFORM.bash;
+unset SYMMETRY_PLATFORM;

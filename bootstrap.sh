@@ -1,19 +1,20 @@
 #!/usr/bin/env bash
 
 cd "$(dirname "${BASH_SOURCE}")";
-who="$(whoami)"
-group="$(id -gn $who)"
+group="$(id -gn $USER)"
 source_branch="develop"
 
-git pull origin $source_branch;
+# git pull origin $source_branch;
 
 function doIt() {
-	shopt -s dotglob
+	shopt -s dotglob;
+	shopt -s extglob;
 	# sudo chown $who:$who ~/bin
 	# sudo chown -R $who:$group $HOME/.config
 
 	rsync --exclude ".git/" \
 		--exclude "bootstrap.sh" \
+		--exclude "install.sh" \
 		--exclude "README.md" \
 		--exclude "LICENSE-MIT.txt" \
 		--exclude ".authorized_keys" \
@@ -21,15 +22,18 @@ function doIt() {
 		--exclude "initializers/" \
 		-avh --no-perms . ~;
 
-	local IS_WSL=$( uname -r | grep -o -P 'Microsoft$' -q && echo 1 || echo 0 )
+	INIT_FILES="$PWD/initializers/!(@(windows|macos|pi|linux)).bash";
+	for file in $INIT_FILES; do
+		if [ -f "${file}" ]; then
+			source $file;
+		fi
+	done
 
-
-	chown $who:$who ~/bin/jenkins
-	chmod +x ~/bin/jenkins
-
-	unset IS_WSL
-	source "$HOME/.bash_profile"
+	shopt -u dotglob;
+	shopt -u extglob;
+	source "$HOME/.bash_profile";
 }
+
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
 	doIt;

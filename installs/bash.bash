@@ -6,7 +6,7 @@ if command -v uname > /dev/null; then
 			shift
 		;;
 		microsoft|pi|ubuntu|debian)
-			apt install bash
+			apt install bash -y
 			shift
 		;;
 	esac

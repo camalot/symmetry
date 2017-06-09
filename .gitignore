@@ -21,3 +21,4 @@ npm-debug.log
 .extra
 .extras/*
 !.extras/.default.bash
+initializers/.authorized_keys

@@ -6,6 +6,12 @@ fi
 if [[ ! ":$PATH:" == *":$HOME/.rbenv/plugins/ruby-build/bin:"* ]]; then
 	export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH";
 fi
+if [[ ! ":$PATH:" == *":$HOME/.rbenv/shims:"* ]]; then
+	export PATH="$HOME/cd .rbenv/shims:$PATH";
+fi
+if [[ ! ":$PATH:" == *":$HOME/.rbenv/bin:"* ]]; then
+	export PATH="$HOME/.rbenv/bin:$PATH";
+fi
 if [[ ! ":$PATH:" == *"/usr/local/aws/bin:"* ]]; then
 	export PATH="/usr/local/aws/bin:$PATH";
 fi
@@ -17,6 +23,8 @@ fi
 if [[ ! ":$PATH:" == *":/usr/local/sbin:"* ]]; then
 	export PATH="/usr/local/sbin:$PATH";
 fi
+
+export GEM_HOME=$HOME/.rbenv/bin
 
 # Make nano the default editor.
 export EDITOR='nano';
