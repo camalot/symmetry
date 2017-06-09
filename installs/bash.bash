@@ -6,14 +6,13 @@ if command -v uname > /dev/null; then
 			shift
 		;;
 		microsoft|pi|ubuntu|debian)
-			apt install bash -y
+			sudo apt install bash -y
 			shift
 		;;
 	esac
 fi
 
-if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
-	sudo -s
-	echo /usr/local/bin/bash >> /etc/shells
-	chsh -s /usr/local/bin/bash
+if ! fgrep -q '/bin/bash' /etc/shells; then
+	sudo echo /bin/bash >> /etc/shells;
+	sudo chsh -s /bin/bash;
 fi

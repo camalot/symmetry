@@ -18,7 +18,6 @@ SYMMETRY_PLATFORM=$(dotfiles_platform);
 # fi
 if [ -f "$PWD/installs/system.${SYMMETRY_PLATFORM}.bash" ]; then
 	# source the specific system functions file
-	echo "$PWD/installs/system.${SYMMETRY_PLATFORM}.bash";
 	source $PWD/installs/system.${SYMMETRY_PLATFORM}.bash;
 fi
 
