@@ -24,7 +24,7 @@ if [[ ! ":$PATH:" == *":/usr/local/sbin:"* ]]; then
 	export PATH="/usr/local/sbin:$PATH";
 fi
 
-export GEM_HOME=$HOME/.rbenv/bin
+export GEM_HOME=$HOME/.rbenv/bin;
 
 # Make nano the default editor.
 export EDITOR='nano';

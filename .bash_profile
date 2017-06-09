@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-source $HOME/.symmetry/.functions/._symmetry.bash;
+source $HOME/.symmetry/functions/._symmetry.bash;
 
 __load_config_files 'functions';
 
