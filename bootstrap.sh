@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 cd "$(dirname "${BASH_SOURCE}")";
-group="$(id -gn $USER)"
 source_branch="develop"
 
 # git pull origin $source_branch;
@@ -9,8 +8,6 @@ source_branch="develop"
 function doIt() {
 	shopt -s dotglob;
 	shopt -s extglob;
-	# sudo chown $who:$who ~/bin
-	# sudo chown -R $who:$group $HOME/.config
 
 	rsync --exclude ".git/" \
 		--exclude "bootstrap.sh" \
@@ -20,7 +17,7 @@ function doIt() {
 		--exclude ".authorized_keys" \
 		--exclude "installs/" \
 		--exclude "initializers/" \
-		-avh --no-perms . ~;
+		-avh --no-perms . $HOME;
 
 	INIT_FILES="$PWD/initializers/!(@(windows|macos|pi|linux)).bash";
 	for file in $INIT_FILES; do

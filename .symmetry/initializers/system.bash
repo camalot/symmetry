@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-source $PWD/.functions/._symmetry.bash
+source $PWD/.symmetry/functions/._symmetry.bash
 
-auth_keys=$PWD/initializers/.authorized_keys;
+auth_keys=$PWD/.symmetry/initializers/.authorized_keys;
 if [ -d "$HOME/.ssh" ] && [ -f $auth_keys ]; then
 	if [ ! -f "$HOME/.ssh/authorized_keys" ]; then
 		cp "$auth_keys" "$HOME/.ssh/authorized_keys"

@@ -6,8 +6,8 @@ function load_prompt() {
 		prompt_profile=$1;
 	fi
 
-	if [ -f "$HOME/.prompts/.$prompt_profile.bash" ]; then
-		source $HOME/.prompts/.$prompt_profile.bash;
+	if [ -f "$HOME/.symmetry/prompts/.$prompt_profile.bash" ]; then
+		source $HOME/.symmetry/prompts/.$prompt_profile.bash;
 	else
 		echo "prompt '$prompt_profile' not found";
 	fi
@@ -58,7 +58,7 @@ function __load_config_files() {
   subdirectory="$1"
   if [ -d "$HOME/.${subdirectory}" ]; then
 		# all non-system specific files and 'this' file
-    FILES="$HOME/.${subdirectory}/@(!(.system.*@(windows|macos|pi|linux)|._*)).bash";
+    FILES="$HOME/.symmetry/${subdirectory}/@(!(.system.*@(windows|macos|pi|linux)|._*)).bash";
     for config_file in $FILES; do
       if [ -f "${config_file}" ]; then
         source $config_file;

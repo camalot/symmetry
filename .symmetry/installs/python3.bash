@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 RELEASE=3.6.1
 
 # install dependencies

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source $PWD/.functions/._symmetry.bash || exit 2;
+source $PWD/.symmetry/functions/._symmetry.bash || exit 2;
 
 SYMMETRY_PLATFORM=$(dotfiles_platform);
 

@@ -62,7 +62,7 @@ function _winenv() {
 			esac
 		done
 	fi
-	CMD_DIR=$(wsldir "/mnt/c/Users/$USER/AppData/Local/lxss$HOME/.functions\.env.ps1")
+	CMD_DIR=$(wsldir "/mnt/c/Users/$USER/AppData/Local/lxss$HOME/.symmetry/functions\.env.ps1")
 	echo $(powershell.exe -Command "Import-Module -Name $CMD_DIR; $CMD_VERB-EnvironmentVariables") | sed -e 's|\r|\n|g' -e 's|^[\s\t]*||g';
 }
 unset IS_WSL

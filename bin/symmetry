@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
+source $HOME/.functions/._symmetry.bash || exit 2;
+
 SYMMETRY_VERSION='0.0.1';
+SYMMETRY_AUTHOR='Ryan Conrad';
+SYMMETRY_PLATFORM=$(dotfiles_platform);
 
-if [ $# -eq 0 ]; then
-	__print_help;
-else
-	__process_commands $*
-fi
-
-function __print_help() {
-	echo "Symmetry v$SYMMETRY_VERSION\nCopyright (c) Ryan Conrad 2017. All Rights Reserved.\n\n";
+__print_help() {
+	echo -e "Symmetry v$SYMMETRY_VERSION";
+	echo -e "Copyright (c) $SYMMETRY_AUTHOR 2017. All Rights Reserved.\n\n";
 	echo "Usage: $0 [command] [args]";
 }
-function __process_commands() {
+
+__process_commands() {
 	case "$1" in
 		-v|--version)
 			echo "Symmetry v$SYMMETRY_VERSION";
@@ -26,5 +26,19 @@ function __process_commands() {
 		;;
 	esac
 }
+
+__execute_install() {
+	if [ -f "$PWD/installs/system.${SYMMETRY_PLATFORM}.bash" ]; then
+		# source the specific system functions file
+		source $PWD/installs/system.${SYMMETRY_PLATFORM}.bash;
+	fi
+}
+
+
+if [ $# -eq 0 ]; then
+	__print_help;
+else
+	__process_commands $*
+fi
 
 unset SYMMETRY_VERSION

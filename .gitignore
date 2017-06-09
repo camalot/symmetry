@@ -18,7 +18,7 @@ Thumbs.db
 node_modules/
 npm-debug.log
 
-.extra
-.extras/*
-!.extras/.default.bash
-initializers/.authorized_keys
+# symmetry specific
+.symmetry/extras/*
+!.symmetry/extras/.default.bash
+.symmetry/initializers/.authorized_keys

@@ -207,9 +207,9 @@ function o() {
 }
 
 SYMMETRY_PLATFORM=$(dotfiles_platform);
-if [ -f "$HOME/.functions/.system.${DF_PLATFORM}.bash" ]; then
+if [ -f "$HOME/.symmetry/functions/.system.${DF_PLATFORM}.bash" ]; then
 	# source the specific system functions file
-	source $HOME/.functions/.system.${DF_PLATFORM}.bash;
+	source $HOME/.symmetry/functions/.system.${DF_PLATFORM}.bash;
 fi
 
 unset SYMMETRY_PLATFORM;
