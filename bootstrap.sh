@@ -14,9 +14,6 @@ function doIt() {
 		--exclude "install.sh" \
 		--exclude "README.md" \
 		--exclude "LICENSE-MIT.txt" \
-		--exclude ".authorized_keys" \
-		--exclude "installs/" \
-		--exclude "initializers/" \
 		-avh --no-perms . $HOME;
 
 	source $PWD/.symmetry/initializers/system.bash;

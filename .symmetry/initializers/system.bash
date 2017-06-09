@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+echo "begin symmetry initialization";
 
 source $HOME/.symmetry/functions/._symmetry.bash
 
@@ -19,6 +20,10 @@ fi
 
 SYMMETRY_PLATFORM=$(dotfiles_platform);
 if [ -f $HOME/.symmetry/initializers/$SYMMETRY_PLATFORM.bash ]; then
+	echo "begin symmetry initialization for '$SYMMETRY_PLATFORM'";
+
 	source $HOME/.symmetry/initializers/$SYMMETRY_PLATFORM.bash;
 fi
 unset SYMMETRY_PLATFORM;
+
+echo "symmetry initialization complete";

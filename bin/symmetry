@@ -43,7 +43,6 @@ __execute_install() {
 			source $HOME/.symmetry/installs/system.${SYMMETRY_PLATFORM}.bash;
 		fi
 	else
-		echo "args";
 		if [ -f "$HOME/.symmetry/installs/$1.bash" ]; then
 			source $HOME/.symmetry/installs/$1.bash;
 		fi
@@ -54,7 +53,11 @@ __execute_init() {
 	if [ $# -eq 0 ]; then
 		if [ -f "$HOME/.symmetry/initializers/system.bash" ]; then
 			source $HOME/.symmetry/initializers/system.bash;
+		else
+			echo "NOPE"
 		fi
+	else
+		echo "$#";
 	fi
 }
 
