@@ -28,6 +28,7 @@ __process_commands() {
 		init)
 			__execute_init "${@:2}";
 			shift;
+		;;
 		*)
 			__print_help;
 			shift;
@@ -42,6 +43,7 @@ __execute_install() {
 			source $HOME/.symmetry/installs/system.${SYMMETRY_PLATFORM}.bash;
 		fi
 	else
+		echo "args";
 		if [ -f "$HOME/.symmetry/installs/$1.bash" ]; then
 			source $HOME/.symmetry/installs/$1.bash;
 		fi

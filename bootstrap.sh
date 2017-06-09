@@ -19,18 +19,15 @@ function doIt() {
 		--exclude "initializers/" \
 		-avh --no-perms . $HOME;
 
-	INIT_FILES="$PWD/initializers/!(@(windows|macos|pi|linux)).bash";
-	for file in $INIT_FILES; do
-		if [ -f "${file}" ]; then
-			source $file;
-		fi
-	done
+	source $PWD/.symmetry/initializers/system.bash;
 
 	shopt -u dotglob;
 	shopt -u extglob;
 	source "$HOME/.bash_profile";
 
-	echo "You should run `symmetry install` or `symmetry init`"
+	echo -e "\n\n\n=========================Symmetry=========================\n";
+	echo -e "\tYou should run 'symmetry install'";
+	echo -e "\n==========================================================\n\n\n";
 }
 
 

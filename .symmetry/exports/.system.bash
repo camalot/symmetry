@@ -7,7 +7,7 @@ if [[ ! ":$PATH:" == *":$HOME/.rbenv/plugins/ruby-build/bin:"* ]]; then
 	export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH";
 fi
 if [[ ! ":$PATH:" == *":$HOME/.rbenv/shims:"* ]]; then
-	export PATH="$HOME/cd .rbenv/shims:$PATH";
+	export PATH="$HOME/.rbenv/shims:$PATH";
 fi
 if [[ ! ":$PATH:" == *":$HOME/.rbenv/bin:"* ]]; then
 	export PATH="$HOME/.rbenv/bin:$PATH";
