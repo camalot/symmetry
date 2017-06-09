@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # do nothing if this system is not windows
-if dotfiles_platform != "windows" > /dev/null 2>&1; then
+if $(dotfiles_platform) != "windows" > /dev/null 2>&1; then
 	return
 fi
 

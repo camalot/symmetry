@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-clear; #for background artifacting
+#clear; #for background artifacting
 
 # Shell prompt based on the Solarized Dark theme.
 # Screenshot: http://i.imgur.com/EkEtphC.png
