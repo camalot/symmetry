@@ -13,10 +13,14 @@ sudo apt install build-essential checkinstall -y;
 source $PWD/installs/bash.bash;
 source $PWD/installs/ruby.bash;
 source $PWD/installs/gems.bash;
-source $PWD/installs/python3.bash;
 
+sudo apt install python-pip -y;
+source $PWD/installs/python3.bash;
 sudo apt install python3-pip -y;
-pip3 install -U setuptools;
+
+sudo pip install --upgrade pip;
+
+pip install -U setuptools;
 
 sudo apt install nodejs;
 
