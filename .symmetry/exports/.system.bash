@@ -75,4 +75,4 @@ if [ -f "$HOME/.symmetry/exports/.system.${SYMMETRY_PLATFORM}.bash" ]; then
 	source $HOME/.symmetry/exports/.system.${SYMMETRY_PLATFORM}.bash;
 fi
 
-unset SYMMETRY_PLATFORM
+unset SYMMETRY_PLATFORM;

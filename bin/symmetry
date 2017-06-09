@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-source $HOME/.functions/._symmetry.bash || exit 2;
+source $HOME/.symmetry/functions/._symmetry.bash || exit 2;
 
 SYMMETRY_VERSION='0.0.1';
 SYMMETRY_AUTHOR='Ryan Conrad';
@@ -9,6 +9,9 @@ __print_help() {
 	echo -e "Symmetry v$SYMMETRY_VERSION";
 	echo -e "Copyright (c) $SYMMETRY_AUTHOR 2017. All Rights Reserved.\n\n";
 	echo "Usage: $0 [command] [args]";
+	echo -e "Commands:\n\t--help: This message\n\t-v|--version: Get symmetry version info";
+	echo -e "\n\t install: execute the system install";
+	echo -e "\t init: execute the system initialization";
 }
 
 __process_commands() {
@@ -18,8 +21,13 @@ __process_commands() {
 			shift;
 		;;
 		install)
+			__execute_init;
+			__execute_install "${@:2}";
 			shift;
 		;;
+		init)
+			__execute_init "${@:2}";
+			shift;
 		*)
 			__print_help;
 			shift;
@@ -28,9 +36,23 @@ __process_commands() {
 }
 
 __execute_install() {
-	if [ -f "$PWD/installs/system.${SYMMETRY_PLATFORM}.bash" ]; then
-		# source the specific system functions file
-		source $PWD/installs/system.${SYMMETRY_PLATFORM}.bash;
+	if [ $# -eq 0 ]; then
+		if [ -f "$HOME/.symmetry/installs/system.${SYMMETRY_PLATFORM}.bash" ]; then
+			# source the specific system install file
+			source $HOME/.symmetry/installs/system.${SYMMETRY_PLATFORM}.bash;
+		fi
+	else
+		if [ -f "$HOME/.symmetry/installs/$1.bash" ]; then
+			source $HOME/.symmetry/installs/$1.bash;
+		fi
+	fi
+}
+
+__execute_init() {
+	if [ $# -eq 0 ]; then
+		if [ -f "$HOME/.symmetry/initializers/system.bash" ]; then
+			source $HOME/.symmetry/initializers/system.bash;
+		fi
 	fi
 }
 
@@ -42,3 +64,5 @@ else
 fi
 
 unset SYMMETRY_VERSION
+unset SYMMETRY_PLATFORM;
+unset SYMMETRY_AUTHOR;

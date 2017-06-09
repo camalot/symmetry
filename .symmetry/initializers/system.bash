@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-source $PWD/.symmetry/functions/._symmetry.bash
+source $HOME/.symmetry/functions/._symmetry.bash
 
-auth_keys=$PWD/.symmetry/initializers/.authorized_keys;
+auth_keys=$HOME/.symmetry/initializers/.authorized_keys;
 if [ -d "$HOME/.ssh" ] && [ -f $auth_keys ]; then
 	if [ ! -f "$HOME/.ssh/authorized_keys" ]; then
 		cp "$auth_keys" "$HOME/.ssh/authorized_keys"
@@ -18,5 +18,7 @@ if [ -d "$HOME/.ssh" ] && [ -f $auth_keys ]; then
 fi
 
 SYMMETRY_PLATFORM=$(dotfiles_platform);
-source $PWD/initializers/$SYMMETRY_PLATFORM.bash;
+if [ -f $HOME/.symmetry/initializers/$SYMMETRY_PLATFORM.bash ]; then
+	source $HOME/.symmetry/initializers/$SYMMETRY_PLATFORM.bash;
+fi
 unset SYMMETRY_PLATFORM;

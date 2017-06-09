@@ -29,6 +29,8 @@ function doIt() {
 	shopt -u dotglob;
 	shopt -u extglob;
 	source "$HOME/.bash_profile";
+
+	echo "You should run `symmetry install` or `symmetry init`"
 }
 
 
