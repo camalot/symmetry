@@ -24,6 +24,8 @@ if [[ ! ":$PATH:" == *":/usr/local/sbin:"* ]]; then
 	export PATH="/usr/local/sbin:$PATH";
 fi
 
+export SYMMETRY_PROMPT=default;
+
 export GEM_HOME=$HOME/.rbenv/bin;
 
 # Make nano the default editor.

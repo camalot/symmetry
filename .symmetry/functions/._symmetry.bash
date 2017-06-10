@@ -1,12 +1,13 @@
 
 function load_prompt() {
 	if [ $# -eq 0 ]; then
-		prompt_profile='default';
+		prompt_profile=$(if [[ $SYMMETRY_PROMPT = '' ]]; then echo 'default'; else echo $SYMMETRY_PROMPT; fi);
 	else
 		prompt_profile=$1;
 	fi
 
 	if [ -f "$HOME/.symmetry/prompts/${prompt_profile}.bash" ]; then
+		export $SYMMETRY_PROMPT="$prompt_profile";
 		source $HOME/.symmetry/prompts/${prompt_profile}.bash;
 	else
 		echo "prompt '${prompt_profile}' not found";
