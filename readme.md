@@ -24,3 +24,48 @@ Set the prompt to one of the defined prompts (currently only `default`)
 ```
 $ symmetry set-prompt [prompt]
 ```
+
+
+### FEATURES
+
+- `git` repository aware prompt
+```
+ryan@bane ~/Development/projects/github/symmetry [develop 1↑]
+$
+```
+- `extras/*` (expect for `.default.bash`) are gitignored so you can create additional scripts that may contain things you don't want to check in to git.
+- system scripts can be loaded based on the envrionment (windows, macos, rasbian, etc)
+- Create `~/.symmetry/initializers/.authorized_keys` file and put your public keys in there that you want to have added to `~/.ssh/authorized_keys`. (this file is git ignored)
+
+#### WINDOWS WSL (Bash on Ubuntu on Windows)
+
+- Get Windows environment variables (prefixed with `WIN_`)
+	```
+	$ printwinenv
+	```
+- Import current Windows environment variables
+	```
+	$ $(winenv)
+	```
+
+- `powershell` interop from native bash
+```
+$ powershell Write-Host "Hello World"
+Hello World
+$ powershell ~/powershell-scripts/my-ps-file.ps1
+```
+- Get the full `lxss` path of a path within WSL
+	```
+	$ lxssdir ~
+	/mnt/c/Users/rconr/AppData/Local/lxss/home/rconr
+	```
+- Convert from a Windows path to WSL path
+	```
+	$ windir "c:\\Windows\\System32\\"
+	/mnt/c/Windows/System32/
+	```
+- Convert from a WSL (linux) path to Windows path
+	```
+	$ wsldir /mnt/c/Windows/System32/
+	C:\Windows\System32\
+	```
