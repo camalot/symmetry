@@ -58,11 +58,7 @@ __execute_init() {
 	if [ $# -eq 0 ]; then
 		if [ -f "$HOME/.symmetry/initializers/system.bash" ]; then
 			source $HOME/.symmetry/initializers/system.bash;
-		else
-			echo "NOPE"
 		fi
-	else
-		echo "$#";
 	fi
 }
 
