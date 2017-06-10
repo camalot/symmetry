@@ -31,6 +31,7 @@ __process_commands() {
 		;;
 		set-prompt)
 			load_prompt "${@:2}";
+			exec $SHELL;
 			shift;
 			;;
 		*)

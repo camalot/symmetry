@@ -7,7 +7,8 @@ function load_prompt() {
 	fi
 
 	if [ -f "$HOME/.symmetry/prompts/${prompt_profile}.bash" ]; then
-		export $SYMMETRY_PROMPT="$prompt_profile";
+		__symmetry_config_write "SYMMETRY_PROMPT" "$prompt_profile";
+		export SYMMETRY_PROMPT="${prompt_profile}";
 		source $HOME/.symmetry/prompts/${prompt_profile}.bash;
 	else
 		echo "prompt '${prompt_profile}' not found";
@@ -52,12 +53,37 @@ function dotfiles_platform() {
 	fi
 }
 
+function __symmetry_config_write() {
+	if [ "$#" -ne 2 ]; then
+		return;
+	fi
+	local key=$1;
+	local value=$2;
+	local cfg_file="$HOME/.symmetry/.config";
+	local line="$key=\"$value\"";
+	if [ ! -f "$cfg_file" ]; then
+		echo "$line" > "$cfg_file";
+	else
+		sed "s/$key=\".*?$\"/$line/g" $cfg_file > "$cfg_file" | echo "$line" >> "$cfg_file";
+	fi
+	return;
+}
+
+function __symmetry_config_load() {
+	local cfg_file="$HOME/.symmetry/.config";
+	if [ -f "$cfg_file" ]; then
+		set -o allexport;
+		source $cfg_file;
+		set +o allexport;
+	fi
+}
+
 function __load_config_files() {
 	shopt -s dotglob;
 	shopt -s extglob;
 
   subdirectory="$1"
-  if [ -d "$HOME/.symmetry/.${subdirectory}" ]; then
+  if [ -d "$HOME/.symmetry/${subdirectory}" ]; then
 		# all non-system specific files and 'this' file
     FILES="$HOME/.symmetry/${subdirectory}/@(!(.system.*@(windows|macos|pi|linux)|._*)).bash";
     for config_file in $FILES; do
