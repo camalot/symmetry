@@ -6,8 +6,8 @@ function load_prompt() {
 		prompt_profile=$1;
 	fi
 
-	if [ -f "$HOME/.symmetry/prompts/.${prompt_profile}.bash" ]; then
-		source $HOME/.symmetry/prompts/.${prompt_profile}.bash;
+	if [ -f "$HOME/.symmetry/prompts/${prompt_profile}.bash" ]; then
+		source $HOME/.symmetry/prompts/${prompt_profile}.bash;
 	else
 		echo "prompt '${prompt_profile}' not found";
 	fi

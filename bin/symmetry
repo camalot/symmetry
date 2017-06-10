@@ -9,14 +9,14 @@ __print_help() {
 	echo -e "Symmetry v$SYMMETRY_VERSION";
 	echo -e "Copyright (c) $SYMMETRY_AUTHOR 2017. All Rights Reserved.\n\n";
 	echo "Usage: $0 [command] [args]";
-	echo -e "Commands:\n\t--help: This message\n\t-v|--version: Get symmetry version info";
+	echo -e "Commands:\n\t--help: This message\n\t--version: Get symmetry version info";
 	echo -e "\n\t install: execute the system install";
 	echo -e "\t init: execute the system initialization";
 }
 
 __process_commands() {
 	case "$1" in
-		-v|--version)
+		--version)
 			echo "Symmetry v$SYMMETRY_VERSION";
 			shift;
 		;;
@@ -29,6 +29,10 @@ __process_commands() {
 			__execute_init "${@:2}";
 			shift;
 		;;
+		set-prompt)
+			load_prompt "${@:2}";
+			shift;
+			;;
 		*)
 			__print_help;
 			shift;
@@ -60,7 +64,6 @@ __execute_init() {
 		echo "$#";
 	fi
 }
-
 
 if [ $# -eq 0 ]; then
 	__print_help;
