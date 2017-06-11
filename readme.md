@@ -47,6 +47,11 @@ $ symmetry load action_group [action]
 ryan@bane ~/Development/projects/github/symmetry [develop 1↑]
 $
 ```
+- `npm module` aware prompt
+```
+ryan@bane ~/Development/projects/github/osiris [osiris v1.0.0-alpha1] [develop ≡]
+$
+```
 - `extras/*` (expect for `.default.bash`) are gitignored so you can create additional scripts that may contain things you don't want to check in to git.
 - system scripts can be loaded based on the envrionment (windows, macos, rasbian, etc)
 - Create `~/.symmetry/initializers/.authorized_keys` file and put your public keys in there that you want to have added to `~/.ssh/authorized_keys`. (this file is git ignored)

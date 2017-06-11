@@ -208,12 +208,12 @@ function json() {
 			curl -s $uri;
 		fi
 		formatted="['${name//./\'][\'}']";
-		echo $content | python -c "import sys, json; print json.load(sys.stdin)${formatted}" 2>/dev/null || echo "unable to locate '${name}'" 1>&2;
+		echo $content | (python -c "import sys, json; print json.load(sys.stdin)${formatted}" 2>/dev/null) || (>&2 echo "unable to locate '${name}'");
 	elif [ "$#" -eq 1 ]; then
 		local name formatted;
 		name="$1";
 		formatted="['${name//./\'][\'}']";
-		python -c "import sys, json; print json.load(sys.stdin)${formatted}" 2>/dev/null || echo "unable to locate '${name}'" 1>&2;
+		(python -c "import sys, json; print json.load(sys.stdin)${formatted}" 2>/dev/null) || (>&2 echo "unable to locate '${name}'");
 	else
 		echo "Usage: $0 <file/url> <object>";
 		echo "Example: $0 $PWD/package.json version";
