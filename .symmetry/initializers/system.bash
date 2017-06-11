@@ -3,6 +3,8 @@ echo "begin symmetry initialization";
 
 source $HOME/.symmetry/functions/._symmetry.bash
 
+__symmetry_info "$BASH_SOURCE";
+
 auth_keys=$HOME/.symmetry/initializers/.authorized_keys;
 if [ -d "$HOME/.ssh" ] && [ -f $auth_keys ]; then
 	if [ ! -f "$HOME/.ssh/authorized_keys" ]; then

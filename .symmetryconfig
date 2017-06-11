@@ -1,0 +1,10 @@
+# this is the path to where you keep your source code. It will be mapped to ~/Development
+# the value can be either a windows path, or the WSL style path
+WIN_PATH_DEVELOPMENT="E:\Development"
+# this is the drive used for accessing things directly from "<drive>:\Users\<USERNAME>"
+# may not be the same as <HOMEDRIVE> or <HOME>, but you should leave it commented out if you
+# are unsure
+WIN_DEFAULT_USERDATA_DRIVE="d"
+
+# The default prompt to load
+SYMMETRY_PROMPT="default"

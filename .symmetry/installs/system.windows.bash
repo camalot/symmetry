@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 sudo echo "Initializing Install";
 
-sudo apt install software-properties-common python-software-properties -y
+sudo apt install software-properties-common python-software-properties -y;
 
 sudo apt update;
 sudo apt upgrade -y;
 
 sudo apt install build-essential checkinstall -y;
+
+sudo apt install pcregrep -y;
+sudo apt install zip unzip -y;
 
 source $PWD/.symmetry/installs/bash.bash;
 source $PWD/.symmetry/installs/ruby.bash;

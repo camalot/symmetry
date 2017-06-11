@@ -61,7 +61,7 @@ function __symmetry_config_write() {
 	fi
 	local key=$1;
 	local value=$2;
-	local cfg_file="$HOME/.symmetry/.config";
+	local cfg_file="$HOME/.symmetryconfig";
 	local line="$key=\"$value\"";
 	if [ ! -f "$cfg_file" ]; then
 		echo "$line" > "$cfg_file";
@@ -72,7 +72,7 @@ function __symmetry_config_write() {
 }
 
 function __symmetry_config_load() {
-	local cfg_file="$HOME/.symmetry/.config";
+	local cfg_file="$HOME/.symmetryconfig";
 	if [ -f "$cfg_file" ]; then
 		set -o allexport;
 		source $cfg_file;
@@ -105,6 +105,22 @@ function __load_local_files() {
 	for file in $HOME/.{${system},path,bash_logout,extra}; do
 		[ -r "$file" ] && [ -f "$file" ] && source "$file";
 	done;
+}
+
+function __symmetry_info() {
+	local s=$1;
+	local dir=$(dirname "$s");
+	s=${s##*/};
+	echo -e "running ${dir##*/} => ${s%.bash}";
+}
+
+function __symmetry_logo() {
+	echo " _______   ____  ______  ___ _____ _____________   __"
+	echo "/  ___\\ \\ / /  \\/  ||  \\/  ||  ___|_   _| ___ \\ \\ / /";
+	echo "\\ \`--. \\ V /| .  . || .  . || |__   | | | |_/ /\\ V / ";
+	echo " \`--. \\ \\ / | |\\/| || |\\/| ||  __|  | | |    /  \\ /  ";
+	echo "/\\__/ / | | | |  | || |  | || |___  | | | |\\ \\  | |  ";
+	echo "\\____/  \\_/ \\_|  |_/\\_|  |_/\\____/  \\_/ \\_| \\_| \\_/  ";
 }
 
 function __system_logo() {

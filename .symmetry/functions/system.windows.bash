@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 if $(__symmetry_platform) != "windows" > /dev/null 2>&1; then
-	echo "not loading windows"
-	return
+	echo "not loading windows";
+	return;
 fi
 
 # translate to linux path from windows path
 function windir() {
-	echo "$*" | sed -e 's|^\([a-z]\):\(.*\)|/mnt/\L\1\E\2|' -e 's|\\|/|g'
+	echo "$*" | sed -e 's|^\([A-Za-z]\):\(.*\)|/mnt/\L\1\E\2|' -e 's|\\|/|g'
 }
 
 # translate the path back to windows path

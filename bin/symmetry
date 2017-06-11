@@ -4,18 +4,20 @@ source $HOME/.symmetry/functions/._symmetry.bash || exit 2;
 SYMMETRY_VERSION='0.0.1';
 SYMMETRY_AUTHOR='Ryan Conrad';
 SYMMETRY_PLATFORM=$(__symmetry_platform);
-
+SYMMETRY_URL='https://github.com/camalot/symmetry';
 __print_help() {
+	__symmetry_logo;
 	echo -e "Symmetry v$SYMMETRY_VERSION";
 	echo -e "Copyright (c) $SYMMETRY_AUTHOR 2017. All Rights Reserved.\n\n";
+	echo -e "  $SYMMETRY_URL";
 	echo "Usage: $0 [command] [args]";
-	echo -e "Commands:\n\t--help: This message\n\t--version: Get symmetry version info";
-	echo -e "\n\t install: execute the system install";
-	echo -e "\t init: execute the system initialization";
-	echo -e "\tget-prompt: gets the currently set prompt";
-	echo -e "\tset-prompt: sets the prompt";
-	echo -e "\tlist [action_group]: list out the available action groups or actions for a group";
-	echo -e "\tload action_group [action]: load an action or an entire action group";
+	echo -e "Commands:\n  --help: This message\n  --version: Get symmetry version info";
+	echo -e "\n  install: execute the system install";
+	echo -e "  init: execute the system initialization";
+	echo -e "  get-prompt: gets the currently set prompt";
+	echo -e "  set-prompt: sets the prompt";
+	echo -e "  list [action_group]: list out the available action groups or actions for a group";
+	echo -e "  load action_group [action]: load an action or an entire action group";
 }
 
 __process_commands() {
@@ -42,7 +44,7 @@ __process_commands() {
 		;;
 		set-prompt)
 			load_prompt "${@:2}";
-			exec $SHELL;
+			reload $SHELL;
 			;;
 		*)
 			__print_help;
@@ -94,3 +96,4 @@ fi
 unset SYMMETRY_VERSION
 unset SYMMETRY_PLATFORM;
 unset SYMMETRY_AUTHOR;
+unset SYMMETRY_URL;

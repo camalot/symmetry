@@ -71,10 +71,9 @@ for option in autocd globstar; do
 	shopt -s "$option" 2> /dev/null;
 done;
 
-SYMMETRY_PLATFORM=$(__symmetry_platform);
-if [ -f "$HOME/.symmetry/exports/.system.${SYMMETRY_PLATFORM}.bash" ]; then
+splatform=$(__symmetry_platform);
+if [ -f "$HOME/.symmetry/exports/.system.${splatform}.bash" ]; then
 	# source the specific system functions file
-	source $HOME/.symmetry/exports/.system.${SYMMETRY_PLATFORM}.bash;
+	source $HOME/.symmetry/exports/.system.${splatform}.bash;
 fi
-
-unset SYMMETRY_PLATFORM;
+unset splatform;

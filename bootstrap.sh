@@ -20,7 +20,8 @@ function __symmetry_bootstrap() {
 	shopt -u extglob;
 
 	source $PWD/.symmetry/functions/._symmetry.bash;
-
+	__symmetry_logo;
+	__symmetry_config_load;
 	__load_config_files initializers default;
 
 	source "$HOME/.bash_profile";
