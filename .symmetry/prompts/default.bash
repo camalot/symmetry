@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-#clear; #for background artifacting
+# if [[ "${SYMMETRY_CLEAR}" -eq '' || "${SYMMETRY_CLEAR}" =~ '[Yy]|[Tt]rue|1' ]]; then
+	#clear; #for background artifacting
+# fi
 
 # Shell prompt based on the Solarized Dark theme.
 # Screenshot: http://i.imgur.com/EkEtphC.png

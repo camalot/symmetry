@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-if $(dotfiles_platform) != "windows" > /dev/null 2>&1; then
+if $(__symmetry_platform) != "windows" > /dev/null 2>&1; then
 	echo "not loading windows"
 	return
 fi

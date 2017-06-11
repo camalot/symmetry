@@ -18,12 +18,5 @@ if [ -d "$HOME/.ssh" ] && [ -f $auth_keys ]; then
 	fi
 fi
 
-SYMMETRY_PLATFORM=$(dotfiles_platform);
-if [ -f $HOME/.symmetry/initializers/$SYMMETRY_PLATFORM.bash ]; then
-	echo "begin symmetry initialization for '$SYMMETRY_PLATFORM'";
-
-	source $HOME/.symmetry/initializers/$SYMMETRY_PLATFORM.bash;
-fi
-unset SYMMETRY_PLATFORM;
 
 echo "symmetry initialization complete";

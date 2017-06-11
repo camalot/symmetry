@@ -20,5 +20,5 @@ npm-debug.log
 
 # symmetry specific
 .symmetry/extras/*
-!.symmetry/extras/.default.bash
+!.symmetry/extras/default.bash
 .symmetry/initializers/.authorized_keys

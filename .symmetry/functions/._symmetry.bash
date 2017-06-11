@@ -15,42 +15,44 @@ function load_prompt() {
 	fi
 }
 
-function dotfiles_platform() {
+function __symmetry_platform() {
+	if [[ "${SYMMETRY_PLATFORM}" -ne '' ]]; then
+		echo ${SYMMETRY_PLATFORM};
+		return;
+	fi
+	local result="";
 	if command -v lsb_release > /dev/null; then
 		system=$(lsb_release -si && uname -r);
 		case $(echo $system | awk '{print tolower($0)}') in
 			*microsoft)
-				echo "windows"
-				shift;
+				result="windows"
 			;;
 			raspbian*)
-				echo "pi"
-				shift;
+				result="pi"
 			;;
 			ubuntu*)
-				echo "debian"
-				shift;
+				result="debian"
 			;;
 			*)
-				echo "unknown";
-				shift;
+				result="unknown";
 		esac
 	else
 		case $(uname -s | awk '{print tolower($0)}') in
 			darwin)
-				echo "macos";
-				shift;
+				result="macos";
 			;;
 			cygwin|msys|win32)
-				echo "windows";
-				shift;
+				result="windows";
 			;;
 			linux)
-				echo "linux";
-				shift;
+				result="linux";
 			;;
 		esac
 	fi
+
+	__symmetry_config_write SYMMETRY_PLATFORM ${result};
+	export SYMMETRY_PLATFORM="${result}";
+	echo $result;
 }
 
 function __symmetry_config_write() {
@@ -81,22 +83,25 @@ function __symmetry_config_load() {
 function __load_config_files() {
 	shopt -s dotglob;
 	shopt -s extglob;
-
-  subdirectory="$1"
+	local platform=$(__symmetry_platform);
+  local subdirectory="$1"
   if [ -d "$HOME/.symmetry/${subdirectory}" ]; then
 		# all non-system specific files and 'this' file
-    FILES="$HOME/.symmetry/${subdirectory}/@(!(.system.*@(windows|macos|pi|linux)|._*)).bash";
+    FILES="$HOME/.symmetry/${subdirectory}/@(!(system.*@(windows|macos|pi|linux|debian)|._*|default)).bash";
     for config_file in $FILES; do
       if [ -f "${config_file}" ]; then
         source $config_file;
       fi
     done
   fi
+
+	if [ -f "$HOME/.symmetry/${subdirectory}/system.${platform}.bash" ]; then
+		source $HOME/.symmetry/${subdirectory}/system.${platform}.bash;
+	fi
 }
 
 function __load_local_files() {
 	shopt -s dotglob
-	system=$(dotfiles_platform)
 	for file in $HOME/.{${system},path,bash_logout,extra}; do
 		[ -r "$file" ] && [ -f "$file" ] && source "$file";
 	done;

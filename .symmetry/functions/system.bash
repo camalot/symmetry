@@ -205,11 +205,3 @@ function o() {
 		open "$@";
 	fi;
 }
-
-SYMMETRY_PLATFORM=$(dotfiles_platform);
-if [ -f "$HOME/.symmetry/functions/.system.${SYMMETRY_PLATFORM}.bash" ]; then
-	# source the specific system functions file
-	source $HOME/.symmetry/functions/.system.${SYMMETRY_PLATFORM}.bash;
-fi
-
-unset SYMMETRY_PLATFORM;

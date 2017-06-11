@@ -1,11 +1,21 @@
 #!/usr/bin/env bash
 source $HOME/.symmetry/functions/._symmetry.bash;
-source $HOME/.symmetry/functions/.system.windows.bash;
+source $HOME/.symmetry/functions/system.windows.bash;
 
 PS_WORKING_DIR=$(lxssdir);
-if [ -f "$1" ] && "$1" ~= ".ps1$"; then
-	powershell.exe -NoProfile -NoLogo -ExecutionPolicy ByPass -File "$1";
-else
-	powershell.exe -NoProfile -NoLogo -ExecutionPolicy ByPass ${*:1};
-fi
+case "${1}" in
+	--[vV]ersion|-v)
+		powershell.exe -NoProfile -NoLogo -ExecutionPolicy ByPass "Write-Host \$PSVersionTable.PSVersion;";
+		;;
+	-[hH]elp|-?|--[hH]elp)
+		powershell.exe -Help;
+		;;
+	*)
+		if [ -f "$1" ] && "$1" ~= ".ps1$"; then
+			powershell.exe -NoProfile -NoLogo -ExecutionPolicy ByPass -File "$1";
+		else
+			powershell.exe -NoProfile -NoLogo -ExecutionPolicy ByPass ${*:1};
+		fi
+	;;
+esac
 unset PS_WORKING_DIR;
