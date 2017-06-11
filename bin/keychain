@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if command -v security ? /dev/null 2>&1; then
+	# retrieves keys from keychains on OSX
+	key=$(security -q find-generic-password -gl $1 2>&1  | egrep '^password' | awk -F\" '{print $2}');
+	echo -n ${key%\\n};
+fi

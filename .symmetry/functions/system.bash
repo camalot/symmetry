@@ -67,16 +67,6 @@ function gz() {
 	printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio";
 }
 
-# Syntax-highlight JSON strings or files
-# Usage: `json '{"foo":42}'` or `echo '{"foo":42}' | json`
-function json() {
-	if [ -t 0 ]; then # argument
-		python -mjson.tool <<< "$*" | pygmentize -l javascript;
-	else # pipe
-		python -mjson.tool | pygmentize -l javascript;
-	fi;
-}
-
 # Run `dig` and display the most useful info
 function digga() {
 	dig +nocmd "$1" any +multiline +noall +answer;
@@ -204,4 +194,28 @@ function o() {
 	else
 		open "$@";
 	fi;
+}
+
+function json() {
+	if [ "$#" -eq 2 ]; then
+		local uri name content formatted;
+		uri="$1";
+		name="$2";
+		content="";
+		if [ -f $uri ]; then
+			content=$(cat "$uri");
+		elif  [[ "$uri" =~ "^http?s://" ]]; then
+			curl -s $uri;
+		fi
+		formatted="['${name//./\'][\'}']";
+		echo $content | python -c "import sys, json; print json.load(sys.stdin)${formatted}" 2>/dev/null || echo "unable to locate '${name}'" 1>&2;
+	elif [ "$#" -eq 1 ]; then
+		local name formatted;
+		name="$1";
+		formatted="['${name//./\'][\'}']";
+		python -c "import sys, json; print json.load(sys.stdin)${formatted}" 2>/dev/null || echo "unable to locate '${name}'" 1>&2;
+	else
+		echo "Usage: $0 <file/url> <object>";
+		echo "Example: $0 $PWD/package.json version";
+	fi
 }

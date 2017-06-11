@@ -1,23 +1,26 @@
 #!/usr/bin/env bash
 # Easier navigation: .., ..., ...., ....., ~ and -
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ~="cd ~" # `cd` is probably faster to type though
-alias -- -="cd -"
+alias ..="cd ..";
+alias ...="cd ../..";
+alias ....="cd ../../..";
+alias .....="cd ../../../..";
+alias ~="cd ~"; # `cd` is probably faster to type though
+alias -- -="cd -";
 
 # Shortcuts
-alias dl="cd ~/Downloads"
-alias dt="cd ~/Desktop"
-alias dev="cd ~/Development"
-alias g="git"
-alias gitpush="git push"
-alias h="history"
-alias j="jobs"
+alias dl="cd ~/Downloads";
+alias dt="cd ~/Desktop";
+alias dev="cd ~/Development";
+alias g="git";
+alias gitpush="git push";
+alias h="history";
+alias j="jobs";
 
-alias mkdir="mkdir -pv"
-alias wget="wget -c"
+alias epoch='date +"%s"';
+alias version='echo "bash version: ${BASH_VERSION}"';
+
+alias mkdir="mkdir -pv";
+alias wget="wget -c";
 
 
 # Detect which `ls` flavor is in use

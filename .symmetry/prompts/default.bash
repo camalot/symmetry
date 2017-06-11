@@ -112,6 +112,16 @@ prompt_git() {
 	fi;
 }
 
+prompt_npm() {
+	if [ ! -f "$PWD/package.json" ]; then
+		return;
+	fi
+	local package_name package_version package_content;
+	package_content=$(cat ./package.json);
+	package_version=$(echo $package_content | json version);
+	package_name=$(echo $package_content | json name);
+	echo -e " ${pfg_purple}[${package_name} v${package_version}]";
+}
 # set the default text color. this only works in tty (eg $TERM == "linux"), not pts (eg $TERM == "xterm")
 # setterm -background black -foreground green -store
 
@@ -225,6 +235,7 @@ PS1+="\[${pfg_white}\]@";
 PS1+="\[${hostStyle}\]\h"; # host
 PS1+="\[${pfg_white}\] ";
 PS1+="\[${pfg_green}\]\w"; # working directory full path
+PS1+="\$(prompt_npm)";
 PS1+="\$(prompt_git)"; # Git repository details
 PS1+="\n";
 PS1+="\[${pfg_white}\]\[${prompt_symbol}\] \[${reset}\]"; # `$` (and reset color)

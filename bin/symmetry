@@ -88,7 +88,7 @@ __execute_action() {
 if [ $# -eq 0 ]; then
 	__print_help;
 else
-	__process_commands $*
+	__process_commands $*;
 fi
 
 unset SYMMETRY_VERSION

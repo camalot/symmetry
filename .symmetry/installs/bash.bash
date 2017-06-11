@@ -2,12 +2,10 @@
 if command -v uname > /dev/null; then
 	case $(uname -s | awk '{print tolower($0)}') in
 		darwin)
-			brew install bash
-			shift
+			brew install bash;
 		;;
 		microsoft|pi|ubuntu|debian)
-			sudo apt install bash -y
-			shift
+			sudo apt install bash -y;
 		;;
 	esac
 fi

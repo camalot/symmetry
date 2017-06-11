@@ -15,4 +15,4 @@ eval "$(rbenv init -)";
 
 load_prompt;
 
-__system_logo;
+# __system_logo;

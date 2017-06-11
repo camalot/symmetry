@@ -2,8 +2,6 @@
 sudo echo "Initializing Install";
 
 sudo apt install software-properties-common python-software-properties -y
-sudo add-apt-repository ppa:fkrull/deadsnakes -y
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 
 sudo apt update;
 sudo apt upgrade -y;
@@ -12,20 +10,12 @@ sudo apt install build-essential checkinstall -y;
 
 source $PWD/.symmetry/installs/bash.bash;
 source $PWD/.symmetry/installs/ruby.bash;
-source $PWD/.symmetry/installs/gems.bash;
 
-sudo apt install python-pip -y;
 source $PWD/.symmetry/installs/python3.bash;
-sudo apt install python3-pip -y;
 
-sudo pip install --upgrade pip;
+sudo apt install jq -y;
 
-pip install -U setuptools;
-
-sudo apt install nodejs;
-
-sudo npm install npm -g -u;
-sudo npm install -g grunt jasmine codecov;
+source $PWD/.symmetry/installs/node.bash;
 
 sudo apt install thefuck -y;
 if ! command -v 'thefuck' 2> /dev/null; then
