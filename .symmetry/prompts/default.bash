@@ -205,41 +205,49 @@ else
 	cursor_styles="\e[?${cs_full_block};${cfg_black};${cbg_green};c" # only seems to work in tty
 fi;
 
-# Highlight the user name when logged in as root.
-if [[ "${USER}" == "root" ]]; then
-	userStyle="${bold}${pfg_red}";
-else
-	userStyle="${pfg_orange}";
-fi;
 
-# Highlight the hostname when connected via SSH.
-if [[ "${SSH_TTY}" ]]; then
-	hostStyle="${bold}${pfg_red}";
-else
-	hostStyle="${pfg_yellow}";
-fi;
 
-# Define the default prompt terminator character '$'
-if [[ "$UID" == 0 ]]; then
-  prompt_symbol="#"
-else
-  prompt_symbol="\$"
-fi
+_set_prompt() {
+	# Highlight the user name when logged in as root.
+	if [[ "${USER}" == "root" ]]; then
+		userStyle="${bold}${pfg_red}";
+	else
+		userStyle="${pfg_orange}";
+	fi;
 
-# Set the terminal title and prompt.
-#trap 'echo -ne "\033]0;$BASH_COMMAND\007"' DEBUG
-PS1="\[\033]0;\u@\H | \W\007\]"; # working directory base name
-PS1+="\[${bold}\]\n"; # newline
-PS1+="\[${userStyle}\]\u"; # username
-PS1+="\[${pfg_white}\]@";
-PS1+="\[${hostStyle}\]\h"; # host
-PS1+="\[${pfg_white}\] ";
-PS1+="\[${pfg_green}\]\w"; # working directory full path
-PS1+="\$(prompt_npm)";
-PS1+="\$(prompt_git)"; # Git repository details
-PS1+="\n";
-PS1+="\[${pfg_white}\]\[${prompt_symbol}\] \[${reset}\]"; # `$` (and reset color)
-export PS1;
+	# Highlight the hostname when connected via SSH.
+	if [[ "${SSH_TTY}" ]]; then
+		hostStyle="${bold}${pfg_red}";
+	else
+		hostStyle="${pfg_yellow}";
+	fi;
 
-PS2="\[${pfg_yellow}\] \[${reset}\]";
-export PS2;
+	# Define the default prompt terminator character '$'
+	if [[ "$UID" == 0 ]]; then
+	  prompt_symbol="#"
+	else
+	  prompt_symbol="\$"
+	fi
+	# Set the terminal title and prompt.
+	#trap 'echo -ne "\033]0;$BASH_COMMAND\007"' DEBUG
+	PS1="\[\033]0;\u@\H | \W\007\]"; # working directory base name
+	PS1+="\[${bold}\]\n"; # newline
+	PS1+="\[${userStyle}\]\u"; # username
+	PS1+="\[${pfg_white}\]@";
+	PS1+="\[${hostStyle}\]\h"; # host
+	PS1+="\[${pfg_white}\] ";
+	PS1+="\[${pfg_green}\]\w"; # working directory full path
+	PS1+="\$(prompt_npm)";
+	PS1+="\$(prompt_git)"; # Git repository details
+	PS1+="\n";
+	PS1+="\[${pfg_white}\]\[${prompt_symbol}\] \[${reset}\]"; # `$` (and reset color)
+	export PS1;
+
+	PS2="\[${pfg_yellow}\] \[${reset}\]";
+	export PS2;
+}
+
+_set_prompt;
+unset _set_prompt;
+unset prompt_npm;
+unset prompt_git;

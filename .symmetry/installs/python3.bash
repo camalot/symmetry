@@ -23,6 +23,7 @@ fi
 
 sudo apt install python3-pip -y;
 sudo pip install --upgrade pip;
+sudo pip install argparse;
 pip install -U setuptools;
 
 unset RELEASE;
