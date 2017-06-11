@@ -24,6 +24,8 @@ function __symmetry_bootstrap() {
 	__symmetry_config_load;
 	__load_config_files initializers default;
 
+	chmod 0755 -R "$HOME/.symmetry";
+
 	source "$HOME/.bash_profile";
 
 	echo -e "\n\n\n=========================Symmetry=========================\n";

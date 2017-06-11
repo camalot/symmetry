@@ -50,8 +50,7 @@ function __symmetry_platform() {
 		esac
 	fi
 
-	__symmetry_config_write SYMMETRY_PLATFORM ${result};
-	export SYMMETRY_PLATFORM="${result}";
+	__symmetry_config_write "SYMMETRY_PLATFORM" "${result}";
 	echo $result;
 }
 
@@ -66,14 +65,17 @@ function __symmetry_config_write() {
 	if [ ! -f "$cfg_file" ]; then
 		echo "$line" > "$cfg_file";
 	else
-		sed "s/$key=\".*?$\"/$line/g" $cfg_file > "$cfg_file" | echo "$line" >> "$cfg_file";
+		sed -i.bak "s/$key=\".*?$\"/$line/g" $cfg_file || echo "$line" >> "$cfg_file";
 	fi
+	eval "$(export $key="$value")";
+	__symmetry_config_load;
 	return;
 }
 
 function __symmetry_config_load() {
 	local cfg_file="$HOME/.symmetryconfig";
 	if [ -f "$cfg_file" ]; then
+		cat $cfg_file;
 		set -o allexport;
 		source $cfg_file;
 		set +o allexport;

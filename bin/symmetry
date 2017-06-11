@@ -32,7 +32,6 @@ __process_commands() {
 			__execute_action "${@:2}";
 		;;
 		install)
-			__execute_action initializers system;
 			__execute_action installs "${@:2}";
 		;;
 		init)
@@ -44,7 +43,7 @@ __process_commands() {
 		;;
 		set-prompt)
 			load_prompt "${@:2}";
-			reload $SHELL;
+			exec $SHELL -l;
 			;;
 		*)
 			__print_help;

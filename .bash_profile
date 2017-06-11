@@ -11,6 +11,8 @@ __load_config_files 'aliases';
 __load_config_files 'completions';
 __load_config_files 'extras';
 
+__load_config_files initializers default
+
 eval "$(rbenv init -)";
 
 load_prompt;
