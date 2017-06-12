@@ -87,7 +87,7 @@ function __load_config_files() {
   local subdirectory="$1"
   if [ -d "$HOME/.symmetry/${subdirectory}" ]; then
 		# all non-system specific files and 'this' file
-    FILES="$HOME/.symmetry/${subdirectory}/@(!(system.*@(windows|macos|pi|linux|debian)|._*|default)).bash";
+    FILES="$HOME/.symmetry/${subdirectory}/@(!(system.*@(windows|macos|pi|linux|debian)|._*|default|*.default)).bash";
     for config_file in $FILES; do
       if [ -f "${config_file}" ]; then
         source $config_file;
@@ -107,6 +107,15 @@ function __load_local_files() {
 	done;
 }
 
+
+function __symmetry_notice() {
+	if [ "$#" -gt 0 ]; then
+		echo -e "\n\n\n=========================Symmetry=========================\n";
+		echo -e "$1";
+		echo -e "\n==========================================================\n\n\n";
+	fi
+}
+
 function __symmetry_info() {
 	local s=$1;
 	local dir=$(dirname "$s");
@@ -115,12 +124,12 @@ function __symmetry_info() {
 }
 
 function __symmetry_logo() {
-	echo " _______   ____  ______  ___ _____ _____________   __"
+	echo -e "\n\n\e[1;34m _______   ____  ______  ___ _____ _____________   __"
 	echo "/  ___\\ \\ / /  \\/  ||  \\/  ||  ___|_   _| ___ \\ \\ / /";
 	echo "\\ \`--. \\ V /| .  . || .  . || |__   | | | |_/ /\\ V / ";
 	echo " \`--. \\ \\ / | |\\/| || |\\/| ||  __|  | | |    /  \\ /  ";
 	echo "/\\__/ / | | | |  | || |  | || |___  | | | |\\ \\  | |  ";
-	echo "\\____/  \\_/ \\_|  |_/\\_|  |_/\\____/  \\_/ \\_| \\_| \\_/  ";
+	echo -e "\\____/  \\_/ \\_|  |_/\\_|  |_/\\____/  \\_/ \\_| \\_| \\_/  \e[0m\n\n";
 }
 
 function __system_logo() {
