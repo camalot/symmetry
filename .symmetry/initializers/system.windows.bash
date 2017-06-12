@@ -18,6 +18,8 @@ WIN_USERPROFILE_PATH=$(powershell.exe -NoLogo -ExecutionPolicy Bypass -NoProfile
 # these are all windows style paths. We will convert them later
 WIN_DESKTOP=$(powershell.exe -NoLogo -ExecutionPolicy Bypass -NoProfile -Command '[Environment]::GetFolderPath("Desktop")' 2> /dev/null || echo "$WIN_DEFAULT_USERDATA_DRIVE:\\Users\\$WIN_USER\\Desktop");
 WIN_ONEDRIVE=$(powershell.exe -NoLogo -ExecutionPolicy Bypass -NoProfile -Command "Write-Host \$ENV:ONEDRIVE" 2> /dev/null || echo "c:\\Users\\$WIN_USER\\OneDrive");
+
+# if it matters, on macos and linux style systems, the info.json file is located at ~/.dropbox/info.json
 WIN_DROPBOX=$(powershell.exe -NoLogo -ExecutionPolicy Bypass -NoProfile -Command 'Get-Content "$ENV:LOCALAPPDATA\Dropbox\info.json" -ErrorAction Stop | ConvertFrom-Json | % personal | % path' 2> /dev/null || echo "$WIN_DEFAULT_USERDATA_DRIVE:\\Users\\$WIN_USER\\Dropbox");
 
 
