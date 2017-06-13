@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-echo "begin symmetry initialization";
-
 source $HOME/.symmetry/functions/._symmetry.bash
 
 __symmetry_info "$BASH_SOURCE";
@@ -21,4 +19,6 @@ if [ -d "$HOME/.ssh" ] && [ -f $auth_keys ]; then
 fi
 
 
-echo "symmetry initialization complete";
+chmod +x $HOME/bin/symmetry;
+chmod +x $HOME/bin/powershell;
+chmod +x $HOME/bin/keychain;

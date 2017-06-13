@@ -18,8 +18,43 @@ brew install moreutils;
 brew install findutils;
 # Install GNU `sed`, overwriting the built-in `sed`.
 brew install gnu-sed --with-default-names;
-# Install Bash 4.
-# Note: don’t forget to add `/usr/local/bin/bash` to `/etc/shells` before
-# running `chsh`.
+
+source $HOME/.symmetry/installs/bash.bash;
+
 brew tap homebrew/versions;
-# brew install bash-completion2
+brew install bash-completion2
+
+source $HOME/.symmetry/installs/screenfetch.bash;
+source $HOME/.symmetry/installs/tldr.bash;
+
+brew install thefuck;
+
+
+# Install more recent versions of some macOS tools.
+brew install vim --with-override-system-vi
+brew install homebrew/dupes/grep --with-default-names
+brew install homebrew/dupes/openssh
+brew install homebrew/dupes/screen
+
+source $HOME/.symmetry/installs/ruby.bash;
+
+brew install ack;
+brew install dark-mode;
+
+brew install git;
+brew install git-lfs;
+brew install imagemagick --with-webp;
+brew install lua;
+brew install lynx;
+brew install p7zip;
+brew install pigz;
+brew install pv;
+brew install rename;
+brew install rhino;
+brew install speedtest_cli;
+brew install ssh-copy-id;
+brew install testssl;
+brew install tree;
+brew install vbindiff;
+brew install webkit2png;
+brew install zopfli;
