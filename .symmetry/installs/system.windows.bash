@@ -25,18 +25,12 @@ if ! command -v 'thefuck' 2> /dev/null; then
 	pip3 install thefuck -U
 fi
 
-S_GROUP=$(id -g);
+S_GROUP=$(id -g -n $USER);
 mkdir -p $HOME/bin;
 sudo chown $USER:$S_GROUP $HOME/bin;
-# install screenfetch latest
-wget -P ~/ https://raw.githubusercontent.com/KittyKatt/screenFetch/master/screenfetch-dev;
-mv $HOME/screenfetch-dev $HOME/bin/screenfetch;
-sudo chmod +x $HOME/bin/screenfetch;
 
-wget -P $HOME/ https://raw.githubusercontent.com/raylee/tldr/master/tldr;
-mv $HOME/tldr $HOME/bin/tldr;
-sudo chown $USER:$S_GROUP $HOME/bin/tldr;
-sudo chmod +x $HOME/bin/tldr;
+source $HOME/.symmetry/installs/screenfetch.bash;
+source $HOME/.symmetry/installs/tldr.bash;
 
 sudo pip install --upgrade awscli;
 sudo pip install pylint behave --upgrade;

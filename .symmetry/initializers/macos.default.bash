@@ -1,32 +1,38 @@
 #!/usr/bin/env bash
 
+source $HOME/.symmetry/functions/._symmetry.bash;
+
+if $(__symmetry_platform) != "macos" > /dev/null 2>&1; then
+	return;
+fi
+
 # ask for admin password right off the bat
 sudo -v;
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
-osascript -e 'tell application "System Preferences" to quit'
+osascript -e 'tell application "System Preferences" to quit';
 
 # Keep-alive: update existing `sudo` time stamp until this has has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Disable the sound effects on boot
-sudo nvram SystemAudioVolume=" "
+sudo nvram SystemAudioVolume=" ";
 
 # Disable transparency in the menu bar and elsewhere on Yosemite
 defaults write com.apple.universalaccess reduceTransparency -bool false;
 
 
 # Menu bar: hide the Time Machine, Volume, and User icons
-defaults -currentHost write dontAutoLoad -array \
-	"/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
-	"/System/Library/CoreServices/Menu Extras/Volume.menu" \
-	"/System/Library/CoreServices/Menu Extras/User.menu";
-defaults write com.apple.systemuiserver menuExtras -array \
-	"/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
-	"/System/Library/CoreServices/Menu Extras/AirPort.menu" \
-	"/System/Library/CoreServices/Menu Extras/Battery.menu" \
-	"/System/Library/CoreServices/Menu Extras/Clock.menu";
+#defaults -currentHost write dontAutoLoad -array \
+#	"/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
+#	"/System/Library/CoreServices/Menu Extras/Volume.menu" \
+#	"/System/Library/CoreServices/Menu Extras/User.menu";
+#defaults write com.apple.systemuiserver menuExtras -array \
+#	"/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
+#	"/System/Library/CoreServices/Menu Extras/AirPort.menu" \
+#	"/System/Library/CoreServices/Menu Extras/Battery.menu" \
+#	"/System/Library/CoreServices/Menu Extras/Clock.menu";
 
 
 # Set highlight color to green

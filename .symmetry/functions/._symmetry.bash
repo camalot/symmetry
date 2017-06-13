@@ -90,6 +90,7 @@ function __load_config_files() {
     FILES="$HOME/.symmetry/${subdirectory}/@(!(system.*@(windows|macos|pi|linux|debian)|._*|default|*.default)).bash";
     for config_file in $FILES; do
       if [ -f "${config_file}" ]; then
+				echo "$config_file";
         source $config_file;
       fi
     done
