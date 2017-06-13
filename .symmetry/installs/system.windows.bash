@@ -27,7 +27,6 @@ fi
 
 S_GROUP=$(id -g -n $USER);
 mkdir -p $HOME/bin;
-sudo chown $USER:$S_GROUP $HOME/bin;
 
 source $HOME/.symmetry/installs/screenfetch.bash;
 source $HOME/.symmetry/installs/tldr.bash;
@@ -35,7 +34,7 @@ source $HOME/.symmetry/installs/tldr.bash;
 sudo pip install --upgrade awscli;
 sudo pip install pylint behave --upgrade;
 
-sudo chown $USER:$S_GROUP $HOME/bin;
+sudo chown $USER:$S_GROUP -r $HOME/bin;
 sudo chown $USER:$S_GROUP $HOME/.local;
 sudo chown $USER:$S_GROUP $HOME/.config;
 sudo chown $USER:$S_GROUP $HOME/.rbenv;
