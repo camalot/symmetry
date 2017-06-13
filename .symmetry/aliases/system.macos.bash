@@ -4,6 +4,10 @@ if $(__symmetry_platform) != "macos" > /dev/null 2>&1; then
 	return
 fi
 
+if [ -L "$HOME/iCloud Drive" ] || [ -d "$HOME/iCloud Drive" ]; then
+	alias ic="$HOME/iCloud Drive";
+fi
+
 # PlistBuddy alias, because sometimes `defaults` just doesnt cut it
 alias plistbuddy="/usr/libexec/PlistBuddy";
 

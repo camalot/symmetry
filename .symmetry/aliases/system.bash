@@ -25,7 +25,6 @@ alias version='echo "bash version: ${BASH_VERSION}"';
 alias mkdir="mkdir -pv";
 alias wget="wget -c";
 
-
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color";
