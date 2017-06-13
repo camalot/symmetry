@@ -38,6 +38,9 @@ brew install homebrew/dupes/screen
 
 source $HOME/.symmetry/installs/ruby.bash;
 
+source $PWD/.symmetry/installs/node.bash;
+
+
 brew install ack;
 brew install dark-mode;
 
