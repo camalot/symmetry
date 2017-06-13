@@ -5,7 +5,7 @@ if command -v uname > /dev/null; then
 			brew install node;
 		;;
 		microsoft|pi|ubuntu|debian)
-			sudo curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+			curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 			sudo apt install nodejs;
 
 			sudo npm install npm -g -u;

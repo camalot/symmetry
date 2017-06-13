@@ -22,7 +22,7 @@ brew install gnu-sed --with-default-names;
 source $HOME/.symmetry/installs/bash.bash;
 
 brew tap homebrew/versions;
-brew install bash-completion2
+brew install bash-completion2;
 
 source $HOME/.symmetry/installs/screenfetch.bash;
 source $HOME/.symmetry/installs/tldr.bash;
