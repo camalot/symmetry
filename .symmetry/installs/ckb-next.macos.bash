@@ -5,6 +5,12 @@
 # CKB NEXT is a fork of CKB
 # https://github.com/ccMSC/ckb
 
+source $HOME/.symmetry/functions/._symmetry.bash || exit 2;
+
+if $(__symmetry_platform) != "macos" > /dev/null 2>&1; then
+	__symetry_notice "Platform not supported";
+	return;
+fi
 
 CKB_VERSION='0.2.8';
 

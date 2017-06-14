@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+
+__symmetry_info "$BASH_SOURCE";
+
+
 # Add `~/bin` to the `$PATH`
 if [[ ! ":$PATH:" == *":$HOME/bin:"* ]]; then
 	export PATH="$HOME/bin:$PATH";

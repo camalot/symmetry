@@ -4,6 +4,11 @@ source $HOME/.symmetry/functions/._symmetry.bash
 source $HOME/.symmetry/functions/system.windows.bash;
 
 __symmetry_info "$BASH_SOURCE";
+if $(__symmetry_platform) != "windows" > /dev/null 2>&1; then
+	__symetry_notice "Platform not supported";
+	return;
+fi
+
 
 WIN_USER=$(powershell.exe -NoLogo -ExecutionPolicy Bypass -NoProfile -Command "Write-Host \$ENV:USERNAME" 2> /dev/null || echo $USER);
 

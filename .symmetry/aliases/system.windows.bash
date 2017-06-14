@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
+__symmetry_info "$BASH_SOURCE";
+
 if $(__symmetry_platform) != "windows" > /dev/null 2>&1; then
-	return
+	__symetry_notice "Platform not supported";
+	return;
 fi
 
 alias winpath='echo -e ${WIN_PATH//:/\\n}';
