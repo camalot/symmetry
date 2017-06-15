@@ -61,3 +61,8 @@ brew install tree;
 brew install vbindiff;
 brew install webkit2png;
 brew install zopfli;
+
+brew cask install atom;
+brew cask install visual-studio-code;
+brew cask install gitify;
+brew cask install gisto;
