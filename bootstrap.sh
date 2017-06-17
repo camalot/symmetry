@@ -12,8 +12,9 @@ function __symmetry_bootstrap() {
 	rsync --exclude ".git/" \
 		--exclude "bootstrap.sh" \
 		--exclude "install.sh" \
-		--exclude "README.md" \
-		--exclude "LICENSE-MIT.txt" \
+		--exclude "readme.md" \
+		--exclude "*.log" \
+		--exclude "license.md" \
 		-avh --no-perms . $HOME;
 
 	shopt -u dotglob;
