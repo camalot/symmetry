@@ -31,6 +31,8 @@ WIN_DROPBOX=$(powershell.exe -NoLogo -ExecutionPolicy Bypass -NoProfile -Command
 WIN_BOXSYNC="$WIN_DEFAULT_USERDATA_DRIVE:\\Users\\$WIN_USER\\Box Sync";
 WIN_GOOGLEDRIVE="$WIN_DEFAULT_USERDATA_DRIVE:\\Users\\$WIN_USER\\Google Drive";
 
+WIN_DOWNLOAD=$(powershell.exe -NoLogo -ExecutionPolicy Bypass -NoProfile -Command '[Environment]::GetFolderPath("Downloads")' 2> /dev/null || echo "$WIN_DEFAULT_USERDATA_DRIVE:\\Users\\$WIN_USER\\Downloads");
+
 # WIN_PATH_DEVELOPMENT is set in .symmetryconfig
 if [[ $WIN_PATH_DEVELOPMENT ]]; then
 	lxss_development=$(windir "$WIN_PATH_DEVELOPMENT");
@@ -60,6 +62,19 @@ fi
 mkdir -p "$HOME/Desktop";
 unset lxss_win_desktop;
 unset WIN_DESKTOP;
+
+lxss_win_downloads=$(windir "$WIN_DOWNLOAD");
+if [ -d "$lxss_win_downloads" ]; then
+	if [ ! -L "$HOME/Downloads" ]; then
+		echo "mapping $HOME/Downloads => $lxss_win_downloads";
+		ln -s "$lxss_win_downloads" "$HOME/Downloads";
+	fi
+else
+	echo "'$lxss_win_desktop' is not a directory";
+fi
+mkdir -p "$HOME/Downloads";
+unset lxss_win_downloads;
+unset WIN_DOWNLOAD;
 
 # when this gets set, it has some whitespace at the end that needs to be removed.
 lxss_win_dropbox=$(windir "$WIN_DROPBOX" | tr -d "\n\r" );
