@@ -23,7 +23,8 @@ _install_subsonic() {
 
 	sudo adduser subsonic;
 	sudo adduser subsonic audio;
-	sudo sed -e 's|SUBSONIC_USER=root|SUBSONIC_USER=subsonic|' /etc/default/subsonic;
+	sudo sed -e 's|SUBSONIC_USER=root|SUBSONIC_USER=subsonic|' /etc/default/subsonic > $HOME/subsonic.tmp;
+	sudo mv $HOME/subsonic.tmp /etc/default/subsonic;
 	sudo chown subsonic:subsonic /var/subsonic -Rv;
 
 	 # install nginx? for reverse proxy?
