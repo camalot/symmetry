@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 _install_subsonic() {
-	local jvm=$(java --version);
 	local env_line="JAVA_HOME=/usr/lib/jvm/jdk-8-oracle-arm-vfp-hflt\n";
 	local env_file="/etc/environment";
 	local subsonic_version="6.1.1";
-	sudo apt-get install oracle-java8-jdk;
+	sudo apt-get install oracle-java8-jdk -y;
 
+	local jvm=$(java --version);
 	if [ ! "$jvm" =~ "java version \"1.8.0\"" ]; then
 		if grep -Fxq "$env_line" "$env_file"; then
 			echo "skipping '${env_line}'";
