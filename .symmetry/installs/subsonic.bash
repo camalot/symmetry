@@ -14,13 +14,14 @@ _install_subsonic() {
 			echo "$env_line" >> "$env_file";
 		fi
 	fi
-	wget –O "$HOME/subsonic-${subsonic_version}.deb" "https://s3-eu-west-1.amazonaws.com/subsonic-public/download/subsonic-${subsonic_version}.deb";
-	sudo dpkg -i "$HOME/subsonic-${subsonic_version}.deb"
+	wget -P "$HOME/" –O "subsonic-${subsonic_version}.deb" "https://s3-eu-west-1.amazonaws.com/subsonic-public/download/subsonic-${subsonic_version}.deb";
+	sudo dpkg -i "$HOME/subsonic-${subsonic_version}.deb";
+
 	rm "$HOME/subsonic-${subsonic_version}.deb";
 
 	sudo /etc/init.d/subsonic stop;
 
-	sudo adduser -DUm -c "subsonic user" subsonic;
+	sudo adduser subsonic;
 	sudo adduser subsonic audio;
 	sudo sed -e 's|SUBSONIC_USER=root|SUBSONIC_USER=subsonic|' /etc/default/subsonic;
 	sudo chown subsonic:subsonic /var/subsonic -Rv;
