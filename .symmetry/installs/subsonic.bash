@@ -28,7 +28,7 @@ _install_subsonic() {
 		sudo adduser subsonic audio;
 	fi
 
-	sudo sed -e 's|SUBSONIC_USER=root|SUBSONIC_USER=subsonic|' -e 's|SUBSONIC_ARGS=".*?"|SUBSONIC_ARGS="subsonic_args"|g' /etc/default/subsonic > $HOME/subsonic.tmp;
+	sudo sed -e 's|SUBSONIC_USER=root|SUBSONIC_USER=subsonic|' -e "s|SUBSONIC_ARGS=\".*\"$|SUBSONIC_ARGS=\"${subsonic_args}\"|g" /etc/default/subsonic > $HOME/subsonic.tmp;
 	sudo mv $HOME/subsonic.tmp /etc/default/subsonic;
 	sudo chown subsonic:subsonic /var/subsonic -Rv;
 
