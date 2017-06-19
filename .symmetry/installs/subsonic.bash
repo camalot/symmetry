@@ -4,7 +4,7 @@ _install_subsonic() {
 	local env_line="JAVA_HOME=/usr/lib/jvm/jdk-8-oracle-arm-vfp-hflt\n";
 	local env_file="/etc/environment";
 	local subsonic_version="6.1.1";
-
+	local subsonic_args="--port=9876 --max-memory=200"
 	sudo apt-get install oracle-java8-jdk -y;
 
 	local jvm=$(java --version);
@@ -28,7 +28,7 @@ _install_subsonic() {
 		sudo adduser subsonic audio;
 	fi
 
-	sudo sed -e 's|SUBSONIC_USER=root|SUBSONIC_USER=subsonic|' /etc/default/subsonic > $HOME/subsonic.tmp;
+	sudo sed -e 's|SUBSONIC_USER=root|SUBSONIC_USER=subsonic|' -e 's|SUBSONIC_ARGS=".*?"|SUBSONIC_ARGS="subsonic_args"|g' /etc/default/subsonic > $HOME/subsonic.tmp;
 	sudo mv $HOME/subsonic.tmp /etc/default/subsonic;
 	sudo chown subsonic:subsonic /var/subsonic -Rv;
 
