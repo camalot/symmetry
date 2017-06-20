@@ -4,7 +4,8 @@ _install_subsonic() {
 	local env_line="JAVA_HOME=/usr/lib/jvm/jdk-8-oracle-arm-vfp-hflt\n";
 	local env_file="/etc/environment";
 	local subsonic_version="6.1.1";
-	local subsonic_args="--port=9876 --max-memory=200"
+	local subsonic_args="--port=9988 --max-memory=200"
+
 	sudo apt-get install oracle-java8-jdk -y;
 
 	local jvm=$(java --version);
@@ -34,7 +35,11 @@ _install_subsonic() {
 
 	 # install nginx? for reverse proxy?
 
-	sudo /etc/init.d/subsonic start
+	sudo /etc/init.d/subsonic start;
+
+
+	__symmetry_notice "\tBe sure to login and configure subsonic!'";
+
 }
 
 _install_subsonic;
