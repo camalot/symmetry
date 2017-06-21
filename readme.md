@@ -136,8 +136,24 @@ git config --global user.email "john.q.public9999@gmail.com";
 
 ### INITIALIZERS
 
-### INSTALLS
+Initializers run on bootstrap, and on launch of bash shell. This can be used to do initalization of symlinks or making sure that ruby environment is configured. `system.*.bash`, `default.bash`, and `*.default.bash` will *NOT* run automatically
 
+
+
+### INSTALLS
+- CKB NEXT (macOS)
+- dotnet
+- bash
+- nodejs
+- octoprint (raspberry pi)
+- powershell
+- python3
+- ruby
+- screenfetch
+- sdkman
+- [subsonic](http://subsonic.org) (music streaming server)
+- tldr
+- webmin (only tested on raspberry pi)
 
 ### FEATURES
 

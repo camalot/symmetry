@@ -6,7 +6,7 @@ _install_subsonic() {
 	local subsonic_version="6.1.1";
 	local subsonic_args="--port=9988 --max-memory=200"
 
-	sudo apt-get install oracle-java8-jdk -y;
+	sudo apt-get install oracle-java8-jdk libav-tools -y;
 
 	local jvm=$(java --version);
 	if [ ! "$jvm" =~ "java version \"1.8.0\"" ]; then
