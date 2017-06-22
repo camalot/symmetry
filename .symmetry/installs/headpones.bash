@@ -21,7 +21,9 @@ _install_headphones() {
 	sudo echo "HP_PORT=8181" >> /etc/default/headphones;
 
 	sudo chmod +x $INSTALL_PATH/init-scripts/init.ubuntu;
-	sudo ln -s $INSTALL_PATH/init-scripts/init.ubuntu /etc/init.d/headphones;
+	if [ ! -L /etc/init.d/headphones ]; then
+		sudo ln -s $INSTALL_PATH/init-scripts/init.ubuntu /etc/init.d/headphones;
+	fi
 	sudo update-rc.d headphones defaults;
 	sudo update-rc.d headphones enable;
 }
