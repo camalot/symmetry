@@ -19,6 +19,7 @@ _install_headphones() {
 	sudo echo "HP_DATA=${INSTALL_PATH}" >> /etc/default/headphones;
 	sudo echo "HP_OPTS=" >> /etc/default/headphones;
 	sudo echo "HP_PORT=8181" >> /etc/default/headphones;
+	sudo echo "HP_HOST=0.0.0.0" >> /etc/default/headphones;
 
 	sudo chmod +x $INSTALL_PATH/init-scripts/init.ubuntu;
 	if [ ! -L /etc/init.d/headphones ]; then
