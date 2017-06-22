@@ -14,15 +14,15 @@ _install_headphones() {
 
 	sudo touch /etc/default/headphones;
 
-	sudo echo "HP_USER=${hpuser}" > /etc/default/headphones;
-	sudo echo "HP_HOME=${INSTALL_PATH}" >> /etc/default/headphones;
-	sudo echo "HP_DATA=${INSTALL_PATH}" >> /etc/default/headphones;
-	sudo echo "HP_OPTS=" >> /etc/default/headphones;
-	sudo echo "HP_PORT=8181" >> /etc/default/headphones;
-	sudo echo "HP_HOST=0.0.0.0" >> /etc/default/headphones;
+	echo "HP_USER=${hpuser}" | sudo tee /etc/default/headphones;
+	echo "HP_HOME=${INSTALL_PATH}" | sudo tee -a /etc/default/headphones;
+	echo "HP_DATA=${INSTALL_PATH}" | sudo tee -a /etc/default/headphones;
+	echo "HP_OPTS=" | sudo tee -a /etc/default/headphones;
+	echo "HP_PORT=8181" | sudo tee -a /etc/default/headphones;
+	echo "HP_HOST=0.0.0.0" | sudo tee -a /etc/default/headphones;
 
 	sudo chmod +x $INSTALL_PATH/init-scripts/init.ubuntu;
-	if [ ! -L /etc/init.d/headphones ]; then
+	if [ ! -L "/etc/init.d/headphones" ] && [ -f "$INSTALL_PATH/init-scripts/init.ubuntu"]; then
 		sudo ln -s $INSTALL_PATH/init-scripts/init.ubuntu /etc/init.d/headphones;
 	fi
 	sudo update-rc.d headphones defaults;
