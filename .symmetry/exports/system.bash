@@ -28,6 +28,14 @@ if [[ ! ":$PATH:" == *":/usr/local/sbin:"* ]]; then
 	export PATH="/usr/local/sbin:$PATH";
 fi
 
+if [[ ! ":$PATH:" == *":$HOME/Android/sdk/tools:"* ]] && [ -d "$HOME/Android/sdk/tools" ]; then
+	export PATH="$HOME/Android/sdk/tools:$HOME/Android/sdk/tools/bin:$PATH";
+fi
+if [[ ! ":$PATH:" == *":$HOME/Android/sdk/platform-tools:"* ]] && [ -d "$HOME/Android/sdk/platform-tools" ]; then
+	export PATH="$HOME/Android/sdk/platform-tools:$HOME/Android/sdk/emulator:$HOME/Android/sdk/build-tools/26.0.0:$PATH";
+fi
+
+
 export SYMMETRY_PROMPT=default;
 
 export GEM_HOME=$HOME/.rbenv/bin;
