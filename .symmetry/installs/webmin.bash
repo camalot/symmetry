@@ -8,8 +8,7 @@ _install_webmin() {
 		__symetry_notice "Platform not supported";
 		return;
 	fi
-
-	sudo apt install perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python -y;
+	sudo apt install perl libhtml-parser-perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python -y;
 	if [ ! -f '/root/jcameron-key.asc' ]; then
 		sudo wget -O /root/jcameron-key.asc http://www.webmin.com/jcameron-key.asc;
 		sudo apt-key add /root/jcameron-key.asc;
