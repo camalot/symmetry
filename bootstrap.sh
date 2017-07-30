@@ -41,7 +41,7 @@ else
 	read -p "This may overwrite existing files in your home directory. Are you sure? (Y/n) " -n 1;
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		doIt;
+		__symmetry_bootstrap;
 	fi;
 fi;
-unset doIt;
+unset __symmetry_bootstrap;
