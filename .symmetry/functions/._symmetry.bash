@@ -45,7 +45,15 @@ function __symmetry_platform() {
 				result="windows";
 			;;
 			linux)
-				result="linux";
+				if command -v "apt-get" > /dev/null; then
+					result="debian";
+				elif command -v "zypper" > /dev/null; then
+					result="suse";
+				elif command -v "yum" > /dev/null; then
+					result="rpm";
+				else
+					result="linux";
+				fi
 			;;
 		esac
 	fi
@@ -89,7 +97,7 @@ function __load_config_files() {
   local subdirectory="$1"
   if [ -d "$HOME/.symmetry/${subdirectory}" ]; then
 		# all non-system specific files and 'this' file
-    FILES="$HOME/.symmetry/${subdirectory}/@(!(system.*@(windows|macos|pi|linux|debian)|._*|default|*.default)).bash";
+    FILES="$HOME/.symmetry/${subdirectory}/@(!(system.*@(windows|macos|pi|linux|debian|suse|rpm)|._*|default|*.default)).bash";
     for config_file in $FILES; do
       if [ -f "${config_file}" ]; then
         source $config_file;
