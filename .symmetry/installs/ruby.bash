@@ -7,9 +7,8 @@ _ruby_install() {
 		RUBY_VER="2.4.1";
 	fi
 
-	if command -v uname > /dev/null; then
-		case $(uname -s | awk '{print tolower($0)}') in
-			darwin)
+	case $(__symmetry_platform) in
+			macos|darwin)
 				brew install ruby-build;
 				brew install rbenv;
 
@@ -19,6 +18,10 @@ _ruby_install() {
 
 				git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv;
 				git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build;
+			;;
+			*)
+				echo "Unknown platform: $(__symmetry_platform)";
+				exit 1;
 			;;
 		esac
 	fi
