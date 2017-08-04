@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+source $HOME/.symmetry/functions/._symmetry.bash;
+__symmetry_info "$BASH_SOURCE";
+system_platform=$(__symmetry_platform);
 _macos_python_install() {
 	brew install python;
 	brew install python3;
@@ -32,9 +35,8 @@ _debian_python_install() {
 }
 
 
-if command -v uname > /dev/null; then
-	case $(uname -s | awk '{print tolower($0)}') in
-		darwin)
+	case $system_platform in
+		darwin|macos)
 			_macos_python_install;
 
 		;;
@@ -42,8 +44,8 @@ if command -v uname > /dev/null; then
 			_debian_python_install;
 		;;
 	esac
-fi
 
 sudo pip install --upgrade pip;
 sudo pip install argparse;
 pip install -U setuptools;
+unset system_platform;
