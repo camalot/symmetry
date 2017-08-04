@@ -20,6 +20,9 @@ sudo apt install jq -y;
 
 source $PWD/.symmetry/installs/node.bash;
 
+source $PWD/.symmetry/installs/webmin.bash;
+
+
 sudo apt install thefuck -y;
 if ! command -v 'thefuck' 2> /dev/null; then
 	pip3 install thefuck -U
