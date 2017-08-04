@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-source $HOME/.symmetry/functions/._symmetry.bash;
 __symmetry_info "$BASH_SOURCE";
-system_platform=$(__symmetry_platform);
 _macos_python_install() {
 	brew install python;
 	brew install python3;
@@ -36,7 +34,7 @@ _debian_python_install() {
 }
 
 echo "platform: $system_platform";
-case "$system_platform" in
+case $(__symmetry_platform) in
 	darwin|macos)
 		_macos_python_install;
 
