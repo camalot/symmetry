@@ -9,6 +9,8 @@ case $(__symmetry_platform) in
 
 		sudo npm install npm -g -u;
 		sudo npm install -g grunt jasmine codecov;
+
+		sudo chown -R $USER:$(id -gn $USER) $HOME/.config;
 	;;
 	*)
 		echo "Unknown platform: $(__symmetry_platform)";

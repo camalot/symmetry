@@ -14,7 +14,7 @@ _install_webmin() {
 		sudo apt-key add /root/jcameron-key.asc;
 	fi
 	if [ ! -f '/etc/apt/sources.list.d/webminsource.list' ]; then
-		sudo echo "deb http://download.webmin.com/download/repository sarge contrib" > /etc/apt/sources.list.d/webminsource.list;
+		echo "deb http://download.webmin.com/download/repository sarge contrib" | sudo tee /etc/apt/sources.list.d/webminsource.list > /dev/null;
 		sudo apt update;
 	fi
 	sudo apt install webmin -y;
