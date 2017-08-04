@@ -8,23 +8,22 @@ _ruby_install() {
 	fi
 
 	case $(__symmetry_platform) in
-			macos|darwin)
-				brew install ruby-build;
-				brew install rbenv;
+		macos|darwin)
+			brew install ruby-build;
+			brew install rbenv;
 
-			;;
-			microsoft|pi|ubuntu|debian)
-				sudo apt install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev nodejs -y;
+		;;
+		microsoft|pi|ubuntu|debian)
+			sudo apt install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev nodejs -y;
 
-				git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv;
-				git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build;
-			;;
-			*)
-				echo "Unknown platform: $(__symmetry_platform)";
-				exit 1;
-			;;
-		esac
-	fi
+			git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv;
+			git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build;
+		;;
+		*)
+			echo "Unknown platform: $(__symmetry_platform)";
+			exit 1;
+		;;
+	esac
 
 	rbenv init
 	rbenv install $RUBY_VER;
