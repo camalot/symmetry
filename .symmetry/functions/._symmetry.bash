@@ -83,7 +83,7 @@ function __symmetry_config_write() {
 function __symmetry_config_load() {
 	local cfg_file="$HOME/.symmetryconfig";
 	if [ -f "$cfg_file" ]; then
-		cat $cfg_file;
+		# cat $cfg_file;
 		set -o allexport;
 		source $cfg_file;
 		set +o allexport;
