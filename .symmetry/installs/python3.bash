@@ -49,4 +49,4 @@ esac
 
 sudo pip install --upgrade pip;
 sudo pip install argparse;
-pip install -U setuptools;
+sudo pip install -U setuptools;

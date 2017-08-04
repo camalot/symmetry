@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-if command -v uname > /dev/null; then
-	case $(uname -s | awk '{print tolower($0)}') in
-		darwin)
+case $(__symmetry_platform) in
+		macos|darwin)
 			brew install node;
 		;;
 		microsoft|pi|ubuntu|debian)
@@ -10,6 +9,10 @@ if command -v uname > /dev/null; then
 
 			sudo npm install npm -g -u;
 			sudo npm install -g grunt jasmine codecov;
+		;;
+		*)
+			echo "Unknown platform: $(__symmetry_platform)";
+			exit 1;
 		;;
 	esac
 fi
