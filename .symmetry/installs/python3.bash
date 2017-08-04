@@ -9,6 +9,7 @@ _macos_python_install() {
 }
 
 _debian_python_install() {
+	echo "install python debian";
 	RELEASE="3.6.1";
 
 	sudo apt install python-pip -y;
