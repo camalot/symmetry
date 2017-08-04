@@ -34,16 +34,16 @@ _debian_python_install() {
 	sudo apt install python3-pip -y;
 }
 
+echo "platform: $system_platform";
+case $system_platform in
+	darwin|macos)
+		_macos_python_install;
 
-	case $system_platform in
-		darwin|macos)
-			_macos_python_install;
-
-		;;
-		microsoft|pi|ubuntu|debian)
-			_debian_python_install;
-		;;
-	esac
+	;;
+	microsoft|pi|ubuntu|debian)
+		_debian_python_install;
+	;;
+esac
 
 sudo pip install --upgrade pip;
 sudo pip install argparse;
