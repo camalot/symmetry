@@ -33,7 +33,6 @@ _debian_python_install() {
 	sudo apt install python3-pip -y;
 }
 
-echo "platform: $system_platform";
 case $(__symmetry_platform) in
 	darwin|macos)
 		_macos_python_install;
@@ -43,7 +42,7 @@ case $(__symmetry_platform) in
 		_debian_python_install;
 	;;
 	*)
-		echo "Unknown platform: $system_platform";
+		echo "Unknown platform: $(__symmetry_platform)";
 		exit 1;
 	;;
 esac
@@ -51,4 +50,3 @@ esac
 sudo pip install --upgrade pip;
 sudo pip install argparse;
 pip install -U setuptools;
-unset system_platform;
