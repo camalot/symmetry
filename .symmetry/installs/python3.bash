@@ -36,12 +36,12 @@ _debian_python_install() {
 }
 
 echo "platform: $system_platform";
-case $system_platform in
-	darwin|macos)
+case "$system_platform" in
+	@(darwin|macos))
 		_macos_python_install;
 
 	;;
-	microsoft|pi|ubuntu|debian)
+	@(microsoft|pi|ubuntu|debian))
 		_debian_python_install;
 	;;
 esac
