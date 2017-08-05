@@ -5,20 +5,23 @@ function mkstart() {
 		(>&2 echo "Missing required tool to run mkstart");
 		exit 1;
 	fi
-	minikube start;
-	## wait for minikube to start
-	trap 'break' 90;
+	# minikube start;
+	## wait for minikube vm to start
 	printf "waiting for minikube vm to start up.";
 	mkubevm=0;
+	count_base=1;
+	count=0;
+	count_max=(( 90 / 5 ));
 	while true; do
 		mkubevm=$((vboxmanage showvminfo "minikube" 2>/dev/null) | grep -c "running (since");
-		if [ mkubevm -eq 1 ]; then
+		if [ $mkubevm -eq 1 ] || [ count -ge count_max ]; then
 			break;
 		fi
 		sleep 5;
 		printf ".";
+		(( count += count_base ));
 	done;
-	if [ mkubevm -eq 1 ]; then
+	if [ $mkubevm -eq 1 ]; then
 		echo -e "\nbinding port 9090 to minikube";
 		socat tcp-listen:9090,fork tcp:$(minikube ip):30000 &
 	else
