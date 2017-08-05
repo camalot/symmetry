@@ -5,25 +5,24 @@ _install_androidsdk() {
 	local build_tools_verison="26.0.0";
 	local platform_verison="android-26";
 
-	if command -v uname > /dev/null; then
-		case $(uname -s | awk '{print tolower($0)}') in
-			darwin)
-				tool_platform='darwin';
-				brew cask install java;
-			;;
-			microsoft|pi|ubuntu|debian)
-				tool_platform="linux";
-				sudo add-apt-repository ppa:webupd8team/java;
-				sudo apt update;
-				sudo apt install oracle-java8-installer -y;
-				sudo apt install lib32ncurses5 lib32stdc++6 -y;
-			;;
-			*)
-				echo "unable to get the platform";
-				exit 500;
-			;;
-		esac
-	fi
+
+	case $(__symmetry_platform) in
+		macos|darwin)
+			tool_platform='darwin';
+			brew cask install java;
+		;;
+		microsoft|pi|ubuntu|debian)
+			tool_platform="linux";
+			sudo add-apt-repository ppa:webupd8team/java;
+			sudo apt update;
+			sudo apt install oracle-java8-installer -y;
+			sudo apt install lib32ncurses5 lib32stdc++6 -y;
+		;;
+		*)
+			echo "Unknown platform: $(__symmetry_platform)";
+			exit 1;
+		;;
+	esac
 
 	local local_file="sdk-tools-${tool_platform}-${tool_version}.zip";
 	wget -P "$HOME/" "https://dl.google.com/android/repository/${local_file}";

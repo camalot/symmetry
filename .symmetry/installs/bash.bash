@@ -1,14 +1,19 @@
+#!/usr/bin/env bash
 
-if command -v uname > /dev/null; then
-	case $(uname -s | awk '{print tolower($0)}') in
-		darwin)
-			brew install bash;
-		;;
-		microsoft|pi|ubuntu|debian)
-			sudo apt install bash -y;
-		;;
-	esac
-fi
+set -e;
+
+case $(__symmetry_platform) in
+	macos|darwin)
+		brew install bash;
+	;;
+	microsoft|pi|ubuntu|debian)
+		sudo apt install bash -y;
+	;;
+	*)
+		echo "Unknown platform: $(__symmetry_platform)";
+		exit 1;
+	;;
+esac
 
 if [ -f "/usr/local/bin/bash" ]; then
 	if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
@@ -24,4 +29,5 @@ elif [ -f "/bin/bash" ]; then
 	sudo chsh -s /bin/bash;
 else
 	echo "Unable to locate the version of bash that was installed.";
+	exit 1;
 fi
