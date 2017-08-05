@@ -20,7 +20,7 @@ function mkstart() {
 	done;
 	if [ mkubevm -eq 1 ]; then
 		echo -e "\nbinding port 9090 to minikube";
-		socat tcp-listen:9090,fork tcp:$(minikube ip):30000 &;
+		socat tcp-listen:9090,fork tcp:$(minikube ip):30000 &
 	else
 		(>&2 echo -e "\nUnable to find minikube vm in allotted time.");
 		exit 1;
