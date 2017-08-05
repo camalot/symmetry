@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function mkstart() {
-	if ! ( command minikube 2>&1 /dev/null || command socat 2>&1 /dev/null || command vboxmanage 2>&1 /dev/null ); then
+	if ! ( command -v minikube 2>&1 /dev/null || command -v socat 2>&1 /dev/null || command -v vboxmanage 2>&1 /dev/null ); then
 		(>&2 echo "Missing required tool to run mkstart");
 		exit 1;
 	fi
