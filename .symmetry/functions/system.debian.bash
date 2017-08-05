@@ -5,7 +5,7 @@ function mkstart() {
 	# 	(>&2 echo "Missing required tool to run mkstart");
 	# 	exit 1;
 	# fi
-	# minikube start;
+	minikube start;
 	## wait for minikube vm to start
 	printf "waiting for minikube vm to start up.";
 	mkubevm="0";
@@ -27,6 +27,6 @@ function mkstart() {
 		socat tcp-listen:9090,fork tcp:$(minikube ip):30000 &
 	else
 		(>&2 echo -e "\nUnable to find minikube vm in allotted time.");
-		exit 1;
+		return;
 	fi
 }
