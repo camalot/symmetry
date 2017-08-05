@@ -18,9 +18,9 @@ case $(__symmetry_platform) in
 		sudo apt install linux-headers-$(uname -r) build-essential virtualbox-$APT_VB_VERSION dkms -y;
 
 
-		cd /tmp
-		wget http://download.virtualbox.org/virtualbox/${VB_VERSION}/Oracle_VM_VirtualBox_Extension_Pack-${VB_VERSION}-${VB_REVISION}.vbox-extpack
-		sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-${VB_VERSION}-${VB_REVISION}.vbox-extpack
+		cd /tmp;
+		wget http://download.virtualbox.org/virtualbox/${VB_VERSION}/Oracle_VM_VirtualBox_Extension_Pack-${VB_VERSION}-${VB_REVISION}.vbox-extpack;
+		sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-${VB_VERSION}-${VB_REVISION}.vbox-extpack | echo -e "y\n";
 
 		sudo adduser $USER vboxusers;
 	;;
