@@ -11,7 +11,7 @@ function mkstart() {
 	mkubevm=0;
 	count_base=1;
 	count=0;
-	count_max=(( 90 / 5 ));
+	count_max=$(expr 90 / 5);
 	while true; do
 		mkubevm=$((vboxmanage showvminfo "minikube" 2>/dev/null) | grep -c "running (since");
 		if [ $mkubevm -eq 1 ] || [ count -ge count_max ]; then
@@ -19,7 +19,8 @@ function mkstart() {
 		fi
 		sleep 5;
 		printf ".";
-		(( count += count_base ));
+		count=$(expr count + count_base);
+		echo "count: $count";
 	done;
 	if [ $mkubevm -eq 1 ]; then
 		echo -e "\nbinding port 9090 to minikube";
