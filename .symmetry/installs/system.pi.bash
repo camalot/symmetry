@@ -4,6 +4,7 @@ sudo apt update;
 sudo apt upgrade -y;
 
 sudo apt install ntpdate -y;
+sudo apt install socat -y;
 
 sudo apt-get clean -y;
 sudo apt-get autoremove -y;

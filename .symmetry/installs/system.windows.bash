@@ -10,6 +10,8 @@ sudo apt install build-essential checkinstall -y;
 
 sudo apt install pcregrep -y;
 sudo apt install zip unzip -y;
+sudo apt install socat -y;
+
 
 source $PWD/.symmetry/installs/bash.bash;
 source $PWD/.symmetry/installs/ruby.bash;
