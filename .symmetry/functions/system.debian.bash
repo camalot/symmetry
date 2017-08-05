@@ -11,7 +11,7 @@ function mkstart() {
 	mkubevm="0";
 	mcount_base="1";
 	mcount="0";
-	count_max=$(expr 90 / 5);
+	mcount_max=$(expr 90 / 5);
 	while true; do
 		mkubevm=$((vboxmanage showvminfo "minikube" 2>/dev/null) | grep -c "running (since");
 		if [ $mkubevm -eq 1 ] || [ $mcount -ge $mcount_max ]; then
