@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function mkstart() {
-	if ! ( command -v minikube 2>&1 /dev/null || command -v socat 2>&1 /dev/null || command -v vboxmanage 2>&1 /dev/null ); then
+	if ! command -v minikube > /dev/null || ! command -v socat > /dev/null || ! command -v vboxmanage > /dev/null; then
 		(>&2 echo "Missing required tool to run mkstart");
 		exit 1;
 	fi
@@ -14,12 +14,12 @@ function mkstart() {
 	count_max=$(expr 90 / 5);
 	while true; do
 		mkubevm=$((vboxmanage showvminfo "minikube" 2>/dev/null) | grep -c "running (since");
-		if [ $mkubevm -eq 1 ] || [ count -ge count_max ]; then
+		if [ $mkubevm -eq 1 ] || [ $count -ge $count_max ]; then
 			break;
 		fi
 		sleep 5;
 		printf ".";
-		count=$(expr count + count_base);
+		count=$(expr $count + $count_base);
 		echo "count: $count";
 	done;
 	if [ $mkubevm -eq 1 ]; then
