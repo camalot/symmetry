@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
 function mkstart() {
-	if ! command -v minikube > /dev/null || ! command -v socat > /dev/null || ! command -v vboxmanage > /dev/null; then
-		(>&2 echo "Missing required tool to run mkstart");
-		exit 1;
-	fi
+	# if ! command -v minikube > /dev/null || ! command -v socat > /dev/null || ! command -v vboxmanage > /dev/null; then
+	# 	(>&2 echo "Missing required tool to run mkstart");
+	# 	exit 1;
+	# fi
 	# minikube start;
 	## wait for minikube vm to start
 	printf "waiting for minikube vm to start up.";
-	mkubevm=0;
-	count_base=1;
-	count=0;
+	mkubevm="0";
+	count_base="1";
+	count="0";
 	count_max=$(expr 90 / 5);
 	while true; do
 		mkubevm=$((vboxmanage showvminfo "minikube" 2>/dev/null) | grep -c "running (since");
