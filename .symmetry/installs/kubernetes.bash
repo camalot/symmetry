@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-funcion _install_kubernetes() {
+function _install_kubernetes() {
 	case $(__symmetry_platform) in
 		ubuntu|debian)
 			source $HOME/.symmetry/functions/system.debian.bash;
