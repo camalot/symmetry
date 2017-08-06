@@ -28,23 +28,23 @@ __process_commands() {
 			echo "Symmetry v$SYMMETRY_VERSION";
 		;;
 		list)
-			__list_actions "${@:2}";
+			__list_actions ${@:2};
 		;;
 		load)
-			__execute_action "${@:2}";
+			__execute_action ${@:2};
 		;;
 		install)
-			__execute_action installs "${@:2}";
+			__execute_action installs ${@:2};
 		;;
 		init)
-			__execute_action initializers "${@:2}";
+			__execute_action initializers ${@:2};
 		;;
 		get-prompt)
 			local prompt_profile=$(if [[ $SYMMETRY_PROMPT = '' ]]; then echo 'default'; else echo $SYMMETRY_PROMPT; fi);
 			echo $prompt_profile;
 		;;
 		set-prompt)
-			load_prompt "${@:2}";
+			load_prompt ${@:2};
 			exec $SHELL -l;
 			;;
 		*)
