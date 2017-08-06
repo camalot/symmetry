@@ -12,7 +12,10 @@ function _install_kubernetes() {
 			sudo apt update;
 
 			# if [ "$1" -eq "reset" ]; then
-				sudo kubeadm reset;
+			sudo kubeadm reset;
+			if [ -f "$HOME/.kube/config" ]; then
+				rm $HOME/.kube/config;
+			fi
 			# fi
 			local kubernetes_version=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt);
 			echo "Downloading kubectl version $kubernetes_version";
@@ -42,14 +45,14 @@ function _install_kubernetes() {
 			  sudo chown $(id -u):$(id -g) $HOME/.kube/config;
 			fi
 
-			kubectl apply -f "http://docs.projectcalico.org/v2.3/getting-started/kubernetes/installation/hosted/kubeadm/1.6/calico.yaml";
+			kubectl apply -f "http://docs.projectcalico.org/v2.3/getting-started/kubernetes/installation/hosted/kubeadm/1.6/calico.yaml" --validate=false;
 
 			kubectl taint nodes --all node-role.kubernetes.io/master-;
 
 			# echo -e "To join nodes to this cluster run:\n\tkubeadm join --token $ktoken $kmaster";
 			echo "Installing kubernetes dashboard";
 
-			kubectl create -f https://git.io/kube-dashboard;
+			kubectl create -f https://git.io/kube-dashboard --validate=false;
 		;;
 		*)
 			(>&2 echo "Unsupported platform: $(__symmetry_platform)");
