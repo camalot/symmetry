@@ -8,15 +8,14 @@ case $(__symmetry_platform) in
 			exit 1;
 		fi
 
-		curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.7.0/bin/linux/amd64/kubectl && chmod +x kubectl && sudo mv kubectl /usr/local/bin/;
+		curl -sLo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.7.0/bin/linux/amd64/kubectl && chmod +x kubectl && sudo mv kubectl /usr/local/bin/;
 
 		sudo apt-get update;
 
 		sudo apt install apt-transport-https -y;
 		curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -;
-		sudo cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
-deb http://apt.kubernetes.io/ kubernetes-xenial main
-EOF
+		echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list > /dev/null;
+
 		sudo apt update;
 		sudo apt install kubelet kubeadm -y;
 
