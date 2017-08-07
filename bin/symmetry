@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 source $HOME/.symmetry/functions/._symmetry.bash || exit 2;
 
-SYMMETRY_VERSION='0.0.1';
+SYMMETRY_VERSION='0.0.2';
 SYMMETRY_AUTHOR='Ryan Conrad';
 SYMMETRY_PLATFORM=$(__symmetry_platform);
 SYMMETRY_URL='https://github.com/camalot/symmetry';
