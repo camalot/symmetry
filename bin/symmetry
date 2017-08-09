@@ -54,8 +54,8 @@ __process_commands() {
 }
 
 __list_actions() {
+	local action_group="$1";
 	if [ $# -eq 1 ]; then
-		local action_group="$1";
 		if [ -d "$HOME/.symmetry/${action_group}" ]; then
 			shopt -s dotglob;
 			shopt -s extglob;
@@ -71,10 +71,9 @@ __list_actions() {
 }
 
 __execute_action() {
+	local action_group=$1;
 	if [ $# -eq 2 ]; then
-		local action_group=$1;
 		local action=$2;
-
 		if [ -f "$HOME/.symmetry/${action_group}/${action}.bash" ]; then
 			# source the specific system install file
 			echo "loading: $HOME/.symmetry/${action_group}/${action}.bash";

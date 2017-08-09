@@ -38,7 +38,7 @@ case $(__symmetry_platform) in
 		_macos_python_install;
 
 	;;
-	microsoft|pi|ubuntu|debian)
+	microsoft|windows|pi|ubuntu|debian)
 		_debian_python_install;
 	;;
 	*)

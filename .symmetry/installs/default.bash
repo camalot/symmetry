@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 source $HOME/.symmetry/functions/._symmetry.bash || exit 2;
 
 # the installs should ONLY load the system specific script
