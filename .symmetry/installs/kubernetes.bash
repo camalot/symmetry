@@ -23,19 +23,25 @@ function _install_kubernetes() {
 			fi
 			# fi
 			local kubernetes_version=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt);
-			echo "Downloading kubectl version $kubernetes_version";
+			echo "downloading kubectl version $kubernetes_version";
 			curl -sLO https://storage.googleapis.com/kubernetes-release/release/$kubernetes_version/bin/linux/amd64/kubectl;
 			chmod +x kubectl;
 			sudo mv kubectl /usr/local/bin/;
+
+			echo "installing kops $kubernetes_version";
+			curl -sLO https://github.com/kubernetes/kops/releases/download/${kubernetes_version}/kops-linux-amd64;
+			chmod +x kops-linux-amd64;
+			sudo mv kops-linux-amd64 /usr/local/bin/kops;
+
 
 			sudo apt install apt-transport-https -y;
 			curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -;
 			echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list > /dev/null;
 
 			sudo apt update;
-			echo "Installing kubernetes and kubelet";
+			echo "installing kubadm and kubelet";
 			sudo apt install kubelet kubeadm -y;
-			echo "initializing kubernetes...";
+			echo "initializing...";
 
 			sudo kubeadm init --pod-network-cidr=192.168.0.0/16;
 
@@ -55,7 +61,7 @@ function _install_kubernetes() {
 			kubectl taint nodes --all node-role.kubernetes.io/master-;
 
 			# echo -e "To join nodes to this cluster run:\n\tkubeadm join --token $ktoken $kmaster";
-			echo "Installing kubernetes dashboard";
+			echo "installing kubernetes dashboard...";
 
 			kubectl create -f https://git.io/kube-dashboard --validate=false;
 
