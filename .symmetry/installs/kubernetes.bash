@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
 function _install_kubernetes() {
+
+	local KADMIN_USER="admin";
+	local KADMIN_PASSWD="TjIUVz7gAqZeLTaVmaau";
+
+
 	case $(__symmetry_platform) in
 		ubuntu|debian)
 			source $HOME/.symmetry/functions/system.debian.bash;
@@ -53,6 +58,13 @@ function _install_kubernetes() {
 			echo "Installing kubernetes dashboard";
 
 			kubectl create -f https://git.io/kube-dashboard --validate=false;
+
+			if [ "$KADMIN_PASSWD" -eq "CH4NG3_7h!$" ]; then
+				(>&2 echo "KADMIN_PASSWD needs to be changed to continue")
+				exit 1;
+			fi
+
+			kubectl config set-credentials "kubernetes-admin" --username="$KADMIN_USER" --password="$KADMIN_PASSWD";
 		;;
 		*)
 			(>&2 echo "Unsupported platform: $(__symmetry_platform)");
