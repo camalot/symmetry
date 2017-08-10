@@ -43,7 +43,7 @@ function _install_kubernetes() {
 			sudo apt install kubelet kubeadm -y;
 			echo "initializing...";
 
-			sudo kubeadm init --pod-network-cidr=192.168.0.0/16;
+			kubeadm init --pod-network-cidr=192.168.0.0/16 --use-kubernetes-version "${kubernetes_version}";
 
 			# ktoken_data=$(sudo kubeadm init --pod-network-cidr=192.168.0.0/16);
 			# kubeadm join --token cc7782.faf6b5e82250d4df 192.168.2.12:6443
@@ -64,11 +64,6 @@ function _install_kubernetes() {
 			echo "installing kubernetes dashboard...";
 
 			kubectl create -f https://git.io/kube-dashboard --validate=false;
-
-			if [ "$KADMIN_PASSWD" -eq "CH4NG3_7h!$" ]; then
-				(>&2 echo "KADMIN_PASSWD needs to be changed to continue")
-				exit 1;
-			fi
 
 			kubectl config set-credentials "kubernetes-admin" --username="$KADMIN_USER" --password="$KADMIN_PASSWD";
 		;;
