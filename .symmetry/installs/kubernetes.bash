@@ -43,7 +43,7 @@ function _install_kubernetes() {
 			sudo apt install kubelet kubeadm -y;
 			echo "initializing...";
 
-			kubeadm init --pod-network-cidr=192.168.0.0/16 --use-kubernetes-version "${kubernetes_version}";
+			kubeadm init --pod-network-cidr=192.168.0.0/16;
 
 			# ktoken_data=$(sudo kubeadm init --pod-network-cidr=192.168.0.0/16);
 			# kubeadm join --token cc7782.faf6b5e82250d4df 192.168.2.12:6443
