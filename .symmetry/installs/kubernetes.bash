@@ -48,11 +48,11 @@ function _install_kubernetes() {
 			sudo kubeadm init --pod-network-cidr=192.168.0.0/16;
 
 			if [ ! -z $KUBE_AUTH_GOOGLE_CLIENT_ID ]; then
-				echo "applying the google authentication to the api server configuration."
-				sudo sed -i "/- kube-apiserver/a\    - --oidc-issuer-url=https://accounts.google.com\n    - --oidc-username-claim=email\n    - --oidc-client-id=$KUBE_AUTH_GOOGLE_CLIENT_ID" /etc/kubernetes/manifests/kube-apiserver.yaml
+				echo "applying the google authentication to the api server configuration.";
+				sudo sed -i "/- kube-apiserver/a\    - --oidc-issuer-url=https://accounts.google.com\n    - --oidc-username-claim=email\n    - --oidc-client-id=$KUBE_AUTH_GOOGLE_CLIENT_ID" /etc/kubernetes/manifests/kube-apiserver.yaml;
 			elif [ ! -z $KUBE_BASIC_AUTH_FILE ]; then
-				echo "applying the basic authentication file to the api server configuration."
-				sudo sed -i "/- kube-apiserver/a\    - --basic-auth-file=$KUBE_BASIC_AUTH_FILE" /etc/kubernetes/manifests/kube-apiserver.yaml
+				echo "applying the basic authentication file to the api server configuration.";
+				sudo sed -i "/- kube-apiserver/a\    - --basic-auth-file=$KUBE_BASIC_AUTH_FILE" /etc/kubernetes/manifests/kube-apiserver.yaml;
 			if
 			# ktoken_data=$(sudo kubeadm init --pod-network-cidr=192.168.0.0/16);
 			# kubeadm join --token cc7782.faf6b5e82250d4df 192.168.2.12:6443
@@ -74,7 +74,7 @@ function _install_kubernetes() {
 
 			kubectl create -f https://git.io/kube-dashboard --validate=false;
 
-			kubectl config set-credentials "kubernetes-admin" --username="$KADMIN_USER" --password="$KADMIN_PASSWD";
+			# kubectl config set-credentials "kubernetes-admin" --username="$KADMIN_USER" --password="$KADMIN_PASSWD";
 		;;
 		*)
 			(>&2 echo "Unsupported platform: $(__symmetry_platform)");
