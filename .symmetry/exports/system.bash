@@ -36,6 +36,11 @@ if [[ ! ":$PATH:" == *":$HOME/Android/sdk/platform-tools:"* ]] && [ -d "$HOME/An
 fi
 
 
+if [ -d "/usr/local/go" ] && [[ ! ":$PATH:" == *":/usr/local/go:"* ]]; then
+	export GOPATH=$HOME/work;
+	export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin;
+fi
+
 export SYMMETRY_PROMPT=default;
 
 export GEM_HOME=$HOME/.rbenv/bin;
