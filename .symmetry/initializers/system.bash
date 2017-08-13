@@ -18,6 +18,11 @@ if [ -d "$HOME/.ssh" ] && [ -f $auth_keys ]; then
 	fi
 fi
 
-for b in $HOME/bin/*; do
-	chmod +x $b;
-done
+# for b in $HOME/bin/*; do
+# 	chmod +x $b;
+# done
+
+chmod +x $HOME/bin/symmetry;
+chmod +x $HOME/bin/powershell;
+chmod +x $HOME/bin/keychain;
+chmod +x $HOME/bin/clip;
