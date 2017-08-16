@@ -47,7 +47,7 @@ function _install_kubernetes() {
 
 			sudo kubeadm init --pod-network-cidr=192.168.0.0/16;
 
-			if [ ! -z $KUBE_AUTH_GOOGLE_CLIENT_ID ]; then
+			if [ ! -z "${KUBE_AUTH_GOOGLE_CLIENT_ID}" ]; then
 				echo "applying the google authentication to the api server configuration.";
 				sudo sed -i "/- kube-apiserver/a\    - --oidc-issuer-url=https://accounts.google.com\n    - --oidc-username-claim=email\n    - --oidc-client-id=$KUBE_AUTH_GOOGLE_CLIENT_ID" /etc/kubernetes/manifests/kube-apiserver.yaml;
 			fi
@@ -75,7 +75,7 @@ function _install_kubernetes() {
 
 			kubectl create -f https://git.io/kube-dashboard --validate=false;
 
-			# kubectl config set-credentials "kubernetes-admin" --username="$KADMIN_USER" --password="$KADMIN_PASSWD";
+			kubectl create clusterrolebinding add-on-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:default
 		;;
 		*)
 			(>&2 echo "Unsupported platform: $(__symmetry_platform)");
