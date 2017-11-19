@@ -11,7 +11,7 @@ _install_androidsdk() {
 			tool_platform='darwin';
 			brew cask install java;
 		;;
-		microsoft|pi|ubuntu|debian)
+		windows|pi|ubuntu|debian)
 			tool_platform="linux";
 			sudo add-apt-repository ppa:webupd8team/java;
 			sudo apt update;

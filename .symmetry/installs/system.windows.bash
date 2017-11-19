@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-sudo echo "Initializing Install";
+sudo echo "Initializing Install for Windows System";
 
 sudo apt install software-properties-common python-software-properties -y;
 

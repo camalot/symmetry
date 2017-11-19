@@ -6,7 +6,7 @@ case $(__symmetry_platform) in
 	macos|darwin)
 		brew install bash;
 	;;
-	microsoft|pi|ubuntu|debian)
+	windows|pi|ubuntu|debian)
 		sudo apt install bash -y;
 	;;
 	*)

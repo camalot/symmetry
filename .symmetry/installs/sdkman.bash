@@ -4,7 +4,7 @@ if command -v uname > /dev/null; then
 		darwin)
 			brew install zip unzip;
 		;;
-		microsoft|pi|ubuntu|debian)
+		windows|pi|ubuntu|debian)
 			sudo apt install zip unzip -y;
 		;;
 	esac

@@ -7,7 +7,7 @@ case $(__symmetry_platform) in
 	macos|darwin)
 
 	;;
-	microsoft|pi|ubuntu|debian)
+	windows|pi|ubuntu|debian)
 		if [ ! -f '/etc/apt/sources.list.d/virutalbox.list' ]; then
 			echo "deb http://download.virtualbox.org/virtualbox/debian xenial contrib" | sudo tee /etc/apt/sources.list.d/virutalbox.list > /dev/null;
 		fi

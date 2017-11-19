@@ -3,7 +3,7 @@ case $(__symmetry_platform) in
 	macos|darwin)
 		brew install node;
 	;;
-	windows|microsoft|pi|ubuntu|debian)
+	windows|pi|ubuntu|debian)
 		curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 		sudo apt install nodejs;
 
