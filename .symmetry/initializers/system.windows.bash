@@ -26,8 +26,6 @@ WIN_ONEDRIVE=$(powershell.exe -NoLogo -ExecutionPolicy Bypass -NoProfile -Comman
 
 # if it matters, on macos and linux style systems, the info.json file is located at ~/.dropbox/info.json
 WIN_DROPBOX=$(powershell.exe -NoLogo -ExecutionPolicy Bypass -NoProfile -Command 'Get-Content "$ENV:LOCALAPPDATA\Dropbox\info.json" -ErrorAction Stop | ConvertFrom-Json | % personal | % path' 2> /dev/null || echo "$WIN_DEFAULT_USERDATA_DRIVE:\\Users\\$WIN_USER\\Dropbox");
-
-
 WIN_BOXSYNC="$WIN_DEFAULT_USERDATA_DRIVE:\\Users\\$WIN_USER\\Box Sync";
 WIN_GOOGLEDRIVE="$WIN_DEFAULT_USERDATA_DRIVE:\\Users\\$WIN_USER\\Google Drive";
 
@@ -41,12 +39,8 @@ if [[ $WIN_PATH_DEVELOPMENT ]]; then
 			echo "mapping $HOME/Development => $lxss_development";
 			ln -s "$lxss_development" "$HOME/Development";
 		fi
-	else
-		echo "'$lxss_development' is not a directory";
 	fi
 	unset lxss_development;
-else
-	echo "WIN_PATH_DEVELOPMENT not configured in .symmetryconfig";
 fi
 mkdir -p "$HOME/Development";
 
@@ -56,21 +50,17 @@ if [ -d "$lxss_win_desktop" ]; then
 		echo "mapping $HOME/Desktop => $lxss_win_desktop";
 		ln -s "$lxss_win_desktop" "$HOME/Desktop";
 	fi
-else
-	echo "'$lxss_win_desktop' is not a directory";
 fi
+
 mkdir -p "$HOME/Desktop";
 unset lxss_win_desktop;
 unset WIN_DESKTOP;
-
 lxss_win_downloads=$(windir "$WIN_DOWNLOAD");
 if [ -d "$lxss_win_downloads" ]; then
 	if [ ! -L "$HOME/Downloads" ]; then
 		echo "mapping $HOME/Downloads => $lxss_win_downloads";
 		ln -s "$lxss_win_downloads" "$HOME/Downloads";
 	fi
-else
-	echo "'$lxss_win_desktop' is not a directory";
 fi
 mkdir -p "$HOME/Downloads";
 unset lxss_win_downloads;
@@ -83,8 +73,6 @@ if [ -d "$lxss_win_dropbox" ]; then
 		echo "mapping $HOME/Dropbox => $lxss_win_dropbox";
 		ln -s "$lxss_win_dropbox" "$HOME/Dropbox";
 	fi
-else
-	echo "$lxss_win_dropbox is not a directory";
 fi
 unset lxss_win_dropbox;
 unset WIN_DROPBOX;
@@ -95,8 +83,6 @@ if [ -d "$lxss_win_boxsync" ]; then
 		echo "mapping $HOME/Box Sync => $lxss_win_boxsync";
 		ln -s "$lxss_win_boxsync" "$HOME/Box Sync";
 	fi
-else
-	echo "$lxss_win_boxsync is not a directory";
 fi
 unset lxss_win_boxsync;
 unset WIN_BOXSYNC;
@@ -107,8 +93,6 @@ if [ -d "$lxss_win_onedrive" ]; then
 		echo "mapping $HOME/OneDrive => $lxss_win_onedrive"
 		ln -s "$lxss_win_onedrive" "$HOME/OneDrive";
 	fi
-else
-	echo "'$lxss_win_onedrive' is not a directory";
 fi
 unset lxss_win_onedrive;
 unset WIN_ONEDRIVE;
@@ -119,8 +103,6 @@ if [ -d "$lxss_win_googledrive" ]; then
 		echo "mapping $HOME/Google Drive => $lxss_win_googledrive"
 		ln -s "$lxss_win_googledrive" "$HOME/Google Drive";
 	fi
-else
-	echo "'$lxss_win_googledrive' is not a directory";
 fi
 unset lxss_win_googledrive;
 unset WIN_GOOGLEDRIVE;
@@ -136,20 +118,15 @@ if [ -d "$lxss_win_userprofile/.ssh" ]; then
 		chmod 0600 "$HOME/.ssh/id_rsa";
 		chmod 0600 "$HOME/.ssh/id_rsa.pub";
 	fi
-else
-	echo "'$lxss_win_userprofile/.ssh' is not a directory";
 fi
 
 mkdir -p "$HOME/.ssh";
-
 
 if [ -d "$lxss_win_userprofile/.aws" ]; then
 	if [ ! -L "$HOME/.aws" ]; then
 		echo "mapping $HOME/.aws => $lxss_win_userprofile/.aws"
 		ln -s "$lxss_win_userprofile/.aws" "$HOME/.aws";
 	fi
-else
-	echo "'$lxss_win_userprofile/.aws' is not a directory";
 fi
 
 if [ -d "$lxss_win_userprofile/.azure" ]; then
@@ -157,8 +134,6 @@ if [ -d "$lxss_win_userprofile/.azure" ]; then
 		echo "mapping $HOME/.azure => $lxss_win_userprofile/.azure"
 		ln -s "$lxss_win_userprofile/.azure" "$HOME/.azure";
 	fi
-else
-	echo "'$lxss_win_userprofile/.azure' is not a directory";
 fi
 
 unset lxss_win_userprofile;

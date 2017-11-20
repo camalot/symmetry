@@ -25,7 +25,16 @@ function __symmetry_platform() {
 		system=$(lsb_release -si && uname -r);
 		case $(echo $system | awk '{print tolower($0)}') in
 			*microsoft)
-				result="windows"
+				# there could be different distros for windows
+				case $(lsb_release -si | awk '{print tolower($0)}') in
+					ubuntu*)
+						# result="windows.ubuntu";
+						result="windows";
+					;;
+					*)
+						result="windows";
+					;;
+				esac
 			;;
 			raspbian*)
 				result="pi"

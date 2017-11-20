@@ -3,7 +3,9 @@
 source $HOME/.symmetry/functions/._symmetry.bash;
 __symmetry_info "$BASH_SOURCE";
 
-if $(__symmetry_platform) != "windows" > /dev/null 2>&1; then
+platform_name=$(__symmetry_platform);
+
+if $platform_name != "windows" > /dev/null 2>&1 && [[ ! $platform_name =~ "windows\.?(ubuntu)?" ]] > /dev/null 2>&1; then
 	__symetry_notice "Platform not supported";
 	return;
 fi
@@ -45,6 +47,22 @@ function winenv() {
 	_winenv --import
 }
 
+function winwslroot() {
+	case $(__symmetry_platform) in
+		ubuntu)
+			search_name="CanonicalGroupLimited.UbuntuonWindows_";
+		;;
+		*)
+			search_name="CanonicalGroupLimited.UbuntuonWindows_";
+		;;
+	esac
+	[[ -z $search_name// ]] && echo "unknown wsl distro" && exit 9;
+
+	temp_paths=$(echo /mnt/c/Users/$USER/AppData/Local/Packages/$search_name*);
+	first_match_path=$(echo "${temp_paths%% *}");
+	echo "$first_match_path/LocalState/rootfs";
+}
+
 function _winenv() {
 	if [ $# -eq 0 ]; then
 		CMD_VERB="Get"
@@ -61,15 +79,16 @@ function _winenv() {
 				;;
 				*)
 				CMD_VERB="Get"
-				break
+				break;
 				;;
 			esac
 		done
 	fi
 
-	temp_paths=$(echo /mnt/c/Users/rconr/AppData/Local/Packages/CanonicalGroupLimited.UbuntuonWindows_*);
-	echo "temp_paths: $temp_paths";
-	first_ubuntu_path=$(echo "${temp_paths%% *}");
-	CMD_DIR=$(wsldir "$first_ubuntu_path/LocalState/rootfs$HOME/.symmetry/functions\.env.ps1")
+	wslroot=$(winwslroot);
+	CMD_DIR=$(wsldir "$wslroot$HOME/.symmetry/functions\.env.ps1")
 	echo $(powershell.exe -Command "Import-Module -Name $CMD_DIR; $CMD_VERB-EnvironmentVariables") | sed -e 's|\r|\n|g' -e 's|^[\s\t]*||g';
 }
+
+
+	unset platform_name;
