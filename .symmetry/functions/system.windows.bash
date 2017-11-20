@@ -66,6 +66,10 @@ function _winenv() {
 			esac
 		done
 	fi
-	CMD_DIR=$(wsldir "/mnt/c/Users/$USER/AppData/Local/lxss$HOME/.symmetry/functions\.env.ps1")
+
+	temp_paths=$(echo /mnt/c/Users/rconr/AppData/Local/Packages/CanonicalGroupLimited.UbuntuonWindows_*);
+	echo "temp_paths: $temp_paths";
+	first_ubuntu_path=$(echo "${temp_paths%% *}");
+	CMD_DIR=$(wsldir "$first_ubuntu_path/LocalState/rootfs$HOME/.symmetry/functions\.env.ps1")
 	echo $(powershell.exe -Command "Import-Module -Name $CMD_DIR; $CMD_VERB-EnvironmentVariables") | sed -e 's|\r|\n|g' -e 's|^[\s\t]*||g';
 }
