@@ -1,19 +1,11 @@
 #!/usr/bin/env bash
 sudo echo "Initializing Install for Windows OpenSUSE";
-sudo apt install build-essential checkinstall -y;
 
-sudo zypper install pcregrep -y;
-sudo zypper install zip unzip -y;
-sudo zypper install socat -y;
+sudo zypper install zip unzip socat jq;
 
 source $PWD/.symmetry/installs/bash.bash;
 
-sudo zypper install jq -y;
-
-sudo zypper install thefuck -y;
-if ! command -v 'thefuck' 2> /dev/null; then
-	pip3 install thefuck -U
-fi
+# sudo zypper install thefuck;
 
 S_GROUP=$(id -g -n $USER);
 mkdir -p $HOME/bin;

@@ -16,8 +16,8 @@ function load_prompt() {
 }
 
 function __symmetry_platform() {
-	if [[ "${SYMMETRY_PLATFORM}" -ne '' ]]; then
-		echo ${SYMMETRY_PLATFORM};
+	if [[ ! -z ${SYMMETRY_PLATFORM// } ]]; then
+		echo "${SYMMETRY_PLATFORM}";
 		return;
 	fi
 	local result="";
@@ -51,10 +51,11 @@ function __symmetry_platform() {
 			*)
 				result="unknown";
 		esac
-	elif [ -f "/etc/*-release" ]; then
+	elif echo "/etc/*-release" > /dev/null; then
 		system=$(cat /etc/*-release | awk 'match($0,/^ID=(.*?)$/) { print substr($0, RSTART+3, RLENGTH) }' && uname -r);
 		case $(echo $system | awk '{print tolower($0)}') in
-			microsoft)
+			*microsoft)
+			#echo "found microsoft kernel";
 				case $(echo $system | awk '{print tolower($0)}') in
 					opensuse*)
 						result="windows.suse";
@@ -148,6 +149,9 @@ function __load_config_files() {
       fi
     done
   fi
+	if [[ $platform =~ ^windows\.(ubuntu|debian|suse)$ ]]; then
+		source $HOME/.symmetry/${subdirectory}/system.windows.bash;
+	fi
 
 	if [ -f "$HOME/.symmetry/${subdirectory}/system.${platform}.bash" ]; then
 		source $HOME/.symmetry/${subdirectory}/system.${platform}.bash;

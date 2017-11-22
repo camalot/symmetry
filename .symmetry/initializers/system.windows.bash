@@ -4,7 +4,7 @@ source $HOME/.symmetry/functions/._symmetry.bash
 source $HOME/.symmetry/functions/system.windows.bash;
 
 __symmetry_info "$BASH_SOURCE";
-if $(__symmetry_platform) != "windows" > /dev/null 2>&1; then
+if [[ ! $(__symmetry_platform) =~ ^windows\.?(suse|debian|ubuntu)?$ ]]; then
 	__symetry_notice "Platform not supported";
 	return;
 fi

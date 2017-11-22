@@ -13,7 +13,9 @@ __load_config_files 'extras';
 
 __load_config_files initializers default
 
-eval "$(rbenv init -)";
+if command rbenv > /dev/null 2>&1; then
+	eval "$(rbenv init -)";
+fi
 
 load_prompt;
 

@@ -5,7 +5,7 @@ __symmetry_info "$BASH_SOURCE";
 
 platform_name=$(__symmetry_platform);
 
-if $platform_name != "windows" > /dev/null 2>&1 && [[ ! $platform_name =~ "windows\.?(ubuntu)?" ]] > /dev/null 2>&1; then
+if [[ ! $(__symmetry_platform) =~ ^windows\.?(suse|debian|ubuntu)?$ ]]; then
 	__symetry_notice "Platform not supported";
 	return;
 fi
@@ -49,10 +49,10 @@ function winenv() {
 
 function winwslroot() {
 	case $(__symmetry_platform) in
-		ubuntu)
+		*ubuntu)
 			search_name="CanonicalGroupLimited.UbuntuonWindows_";
 		;;
-		opensuse)
+		*suse)
 			search_name="*openSUSELeap42.2_"
 		;;
 		*)
