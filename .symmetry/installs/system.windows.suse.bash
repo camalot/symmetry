@@ -10,9 +10,6 @@ source $PWD/.symmetry/installs/bash.bash;
 S_GROUP=$(id -g -n $USER);
 mkdir -p $HOME/bin;
 
-source $HOME/.symmetry/installs/screenfetch.bash;
-source $HOME/.symmetry/installs/tldr.bash;
-
 sudo chown $USER:$S_GROUP -r $HOME/bin;
 sudo chown $USER:$S_GROUP $HOME/.local;
 sudo chown $USER:$S_GROUP $HOME/.config;

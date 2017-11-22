@@ -24,9 +24,6 @@ fi
 S_GROUP=$(id -g -n $USER);
 mkdir -p $HOME/bin;
 
-source $HOME/.symmetry/installs/screenfetch.bash;
-source $HOME/.symmetry/installs/tldr.bash;
-
 sudo pip install --upgrade awscli;
 sudo pip install pylint behave --upgrade;
 

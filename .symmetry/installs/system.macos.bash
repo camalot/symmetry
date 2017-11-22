@@ -24,9 +24,6 @@ source $HOME/.symmetry/installs/bash.bash;
 brew tap homebrew/versions;
 brew install bash-completion2;
 
-source $HOME/.symmetry/installs/screenfetch.bash;
-source $HOME/.symmetry/installs/tldr.bash;
-
 brew install thefuck;
 
 

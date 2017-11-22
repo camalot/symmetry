@@ -1,1 +1,0 @@
-lxrun /uninstall /full /y
