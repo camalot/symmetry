@@ -1,26 +1,55 @@
-# Compiled Python files
-*.pyc
 
-# Folder view configuration files
-.DS_Store
+# -----------------------------------
+# Linux                             |
+# -----------------------------------
+*~
+
+# -----------------------------------
+# Windows                           |
+# -----------------------------------
 Desktop.ini
-
-# Thumbnail cache files
-._*
-# not symmetry files
-!._symmetry.*
+ehthumbs.db
 Thumbs.db
 
-# Files that might appear on external disks
+# -----------------------------------
+# macOS                             |
+# -----------------------------------
+._*
+.AppleDouble
+.DS_Store
+.localized
+.LSOverride
 .Spotlight-V100
 .Trashes
+Icon
 
+# -----------------------------------
+# nodejs & npm                      |
+# -----------------------------------
 node_modules/
 npm-debug.log
 
-# symmetry specific
+# -----------------------------------
+# Vim                               |
+# -----------------------------------
+%*
+*.sw[a-z]
+*.un~
+.netrwhist
+Session.vim
+
+# -----------------------------------
+# Miscellaneous                     |
+# -----------------------------------
+*.pyc
+kubeout.txt
+
+# -----------------------------------
+# Symmetry                          |
+# -----------------------------------
 .symmetry/extras/*
 !.symmetry/extras/default.bash
 .symmetry/initializers/.authorized_keys
 .systems/
-kubeout.txt
+# not symmetry files that were excluded above
+!._symmetry.*
