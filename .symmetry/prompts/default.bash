@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 _set_prompt() {
 	# if [[ "${SYMMETRY_CLEAR}" -eq '' || "${SYMMETRY_CLEAR}" =~ '[Yy]|[Tt]rue|1' ]]; then
-		#clear; #for background artifacting
+		clear; #for background artifacting
 	# fi
 
 	# Shell prompt based on the Solarized Dark theme.
