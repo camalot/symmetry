@@ -149,7 +149,7 @@ function __load_config_files() {
       fi
     done
   fi
-	if [[ $platform =~ ^windows\.(ubuntu|debian|suse)$ ]]; then
+	if [[ $platform =~ ^windows\.(ubuntu|debian|suse)$ ]] && [ -f "$HOME/.symmetry/${subdirectory}/system.${platform}.bash" ]; then
 		source $HOME/.symmetry/${subdirectory}/system.windows.bash;
 	fi
 
