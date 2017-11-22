@@ -31,6 +31,9 @@ function __symmetry_platform() {
 						# result="windows.ubuntu";
 						result="windows";
 					;;
+					opensuse*)
+						result="windows.suse";
+					;;
 					*)
 						result="windows";
 					;;
@@ -42,8 +45,40 @@ function __symmetry_platform() {
 			ubuntu*)
 				result="debian"
 			;;
+			opensuse*)
+				result="suse";
+			;;
 			*)
 				result="unknown";
+		esac
+	elif [ -f "/etc/*-release" ]; then
+		system=$(cat /etc/*-release | awk 'match($0,/^ID=(.*?)$/) { print substr($0, RSTART+3, RLENGTH) }' && uname -r);
+		case $(echo $system | awk '{print tolower($0)}') in
+			microsoft)
+				case $(echo $system | awk '{print tolower($0)}') in
+					opensuse*)
+						result="windows.suse";
+					;;
+					ubuntu*)
+						result="windows";
+					;;
+					*)
+						result="windows";
+					;;
+				esac
+			;;
+			raspbian*)
+				result="pi"
+			;;
+			ubuntu*)
+				result="debian"
+			;;
+			opensuse*)
+				result="suse";
+			;;
+			*)
+				result="unknown";
+			;;
 		esac
 	else
 		case $(uname -s | awk '{print tolower($0)}') in

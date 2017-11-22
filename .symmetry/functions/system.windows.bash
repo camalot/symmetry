@@ -52,6 +52,9 @@ function winwslroot() {
 		ubuntu)
 			search_name="CanonicalGroupLimited.UbuntuonWindows_";
 		;;
+		opensuse)
+			search_name="*openSUSELeap42.2_"
+		;;
 		*)
 			search_name="CanonicalGroupLimited.UbuntuonWindows_";
 		;;

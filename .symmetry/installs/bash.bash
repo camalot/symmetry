@@ -9,6 +9,9 @@ case $(__symmetry_platform) in
 	windows|pi|ubuntu|debian)
 		sudo apt install bash -y;
 	;;
+	suse)
+		sudo zypper install bash -y;
+	;;
 	*)
 		echo "Unknown platform: $(__symmetry_platform)";
 		exit 1;
