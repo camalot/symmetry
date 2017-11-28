@@ -51,8 +51,8 @@ function __symmetry_platform() {
 			*)
 				result="unknown";
 		esac
-	elif echo "/etc/*-release" > /dev/null; then
-		system=$(cat /etc/*-release | awk 'match($0,/^ID=(.*?)$/) { print substr($0, RSTART+3, RLENGTH) }' && uname -r);
+	elif echo "/etc/*-release" &> /dev/null && ls "/etc/*-release" &> /dev/null; then
+		system=$(cat /etc/*-release | awk 'match($0,/^ID=(.*?)$/) { print substr($0, RSTART+3, RLENGTH) }' 2> /dev/null && uname -r);
 		case $(echo $system | awk '{print tolower($0)}') in
 			*microsoft)
 			#echo "found microsoft kernel";
