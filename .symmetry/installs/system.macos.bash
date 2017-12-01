@@ -63,3 +63,6 @@ brew cask install atom;
 brew cask install visual-studio-code;
 brew cask install gitify;
 brew cask install gisto;
+
+defaults write com.apple.screencapture location ~/Documents/Screenshots;
+killall SystemUIServer;
