@@ -32,6 +32,11 @@ if [ -d "$HOME/.ssh" ] && [ -f $auth_keys ]; then
 	fi
 fi
 
+
+if command -v chef > /dev/null 2>&1; then
+	eval $(chef shell-init $SHELL);
+fi
+
 chmod +x $HOME/bin/symmetry;
 chmod +x $HOME/bin/powershell;
 chmod +x $HOME/bin/keychain;

@@ -64,5 +64,7 @@ brew cask install visual-studio-code;
 brew cask install gitify;
 brew cask install gisto;
 
-defaults write com.apple.screencapture location ~/Documents/Screenshots;
+mkdir -p $HOME/Documents/Screenshots;
+defaults write com.apple.screencapture location $HOME/Documents/Screenshots;
 killall SystemUIServer;
+mv "$HOME/Desktop/Screen Shot *" "$HOME/Documents/Screenshots";
