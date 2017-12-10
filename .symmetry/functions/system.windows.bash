@@ -90,7 +90,7 @@ function _winenv() {
 
 	wslroot=$(winwslroot);
 	CMD_DIR=$(wsldir "$wslroot$HOME/.symmetry/functions\.env.ps1")
-	echo $(powershell.exe -Command "Import-Module -Name $CMD_DIR; $CMD_VERB-EnvironmentVariables") | sed -e 's|\r|\n|g' -e 's|^[\s\t]*||g';
+	echo $(powershell.exe -NoProfile -NoLogo -Command "Import-Module -Name $CMD_DIR; $CMD_VERB-EnvironmentVariables") | sed -e 's|\r|\n|g' -e 's|^[\s\t]*||g';
 }
 
 
