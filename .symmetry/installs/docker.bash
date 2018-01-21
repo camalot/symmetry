@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 case $(__symmetry_platform) in
 	macos|darwin)
-
+		brew install docker;
 	;;
 	ubuntu|debian)
 		curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -;

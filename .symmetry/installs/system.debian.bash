@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 sudo echo "Initializing Install";
+sudo add-apt-repository ppa:adapt/ppa -y;
 
 sudo apt install software-properties-common python-software-properties -y;
 
@@ -11,6 +12,9 @@ sudo apt install build-essential checkinstall -y;
 sudo apt install pcregrep -y;
 sudo apt install zip unzip -y;
 sudo apt install socat -y;
+sudo apt install libnotify-bin -y;
+sudo apt install ppa-purge adapt lxd -y;
+
 
 source $PWD/.symmetry/installs/bash.bash;
 source $PWD/.symmetry/installs/ruby.bash;
