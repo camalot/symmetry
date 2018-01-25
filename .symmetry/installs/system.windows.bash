@@ -40,9 +40,9 @@ sudo chown $USER:$S_GROUP $HOME/.rbenv;
 
 unset S_GROUP;
 
-sudo chmod 0755 $HOME/bin -R;
-sudo chmod 0755 $HOME/.local -R;
-sudo chmod 0755 $HOME/.config -R;
-sudo chmod 0755 $HOME/.rbenv -R;
+sudo chmod -R 0755 $HOME/bin;
+sudo chmod -R 0755 $HOME/.local;
+sudo chmod -R 0755 $HOME/.config;
+sudo chmod -R 0755 $HOME/.rbenv;
 
 sudo apt autoremove -y;
