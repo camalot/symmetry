@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
-
-NODE_VERSION="${1:-"9"}";
+set -e;
+NODEJS_VERSION="9";
 case $(__symmetry_platform) in
 	macos|darwin)
 		brew install node;
 	;;
 	windows|pi|ubuntu|debian)
-		curl -sL "https://deb.nodesource.com/setup_${NODE_VERSION}.x" | sudo -E bash -
-		sudo apt install nodejs;
+		curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -;
+		sudo apt update;
+		sudo apt install nodejs -yq;
 
 		sudo npm install npm -g -u;
 		sudo npm install -g grunt codecov;
@@ -19,3 +20,4 @@ case $(__symmetry_platform) in
 		exit 1;
 	;;
 esac
+unset NODEJS_VERSION;
