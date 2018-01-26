@@ -29,7 +29,7 @@ sudo pip install pylint behave --upgrade;
 
 sudo chown $USER:$S_GROUP -r $HOME/bin;
 
-sudo chmod 0755 $HOME/bin -R;
+sudo chmod -R 0755 $HOME/bin;
 
 
 sudo apt-get clean -y;

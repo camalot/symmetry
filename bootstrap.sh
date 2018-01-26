@@ -25,7 +25,7 @@ function __symmetry_bootstrap() {
 	__symmetry_config_load;
 	__load_config_files initializers default;
 
-	chmod 0755 -R "$HOME/.symmetry";
+	chmod -R 0755 "$HOME/.symmetry";
 
 	source "$HOME/.bash_profile";
 
