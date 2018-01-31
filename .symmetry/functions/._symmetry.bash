@@ -95,9 +95,12 @@ function __symmetry_platform() {
 				elif command -v "zypper" > /dev/null; then
 					result="suse";
 				elif command -v "yum" > /dev/null; then
-					result="rpm";
+					result="rhel";
 				else
 					result="linux";
+					[ -f /etc/redhat-release ] && result="rhel";
+					[ -f /etc/mandrake-release ] && result="mandrake";
+					[ -f /etc/alpine-release ] && result="alpine";
 				fi
 			;;
 		esac
