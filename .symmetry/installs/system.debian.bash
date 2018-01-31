@@ -17,7 +17,7 @@ sudo apt install ppa-purge adapt lxd -y;
 
 
 source $PWD/.symmetry/installs/bash.bash;
-source $PWD/.symmetry/installs/ruby.bash;
+# source $PWD/.symmetry/installs/ruby.bash;
 
 source $PWD/.symmetry/installs/python3.bash;
 
@@ -25,7 +25,7 @@ sudo apt install jq -y;
 
 source $PWD/.symmetry/installs/node.bash;
 
-source $PWD/.symmetry/installs/webmin.bash;
+# source $PWD/.symmetry/installs/webmin.bash;
 
 
 sudo apt install thefuck -y;
