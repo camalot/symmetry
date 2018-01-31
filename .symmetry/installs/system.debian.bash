@@ -39,16 +39,19 @@ mkdir -p $HOME/bin;
 sudo pip install --upgrade awscli;
 sudo pip install pylint behave --upgrade;
 
-sudo chown -R $USER:$S_GROUP $HOME/bin;
-sudo chown $USER:$S_GROUP $HOME/.local;
-sudo chown $USER:$S_GROUP $HOME/.config;
-sudo chown $USER:$S_GROUP $HOME/.rbenv;
+[ -d "$HOME/bin" ] && \
+	sudo chown -R $USER:$S_GROUP $HOME/bin && \
+	sudo chmod -R 0755 $HOME/bin;
+[ -d "$HOME/.local" ] && \
+	sudo chown $USER:$S_GROUP $HOME/.local && \
+	sudo chmod -R 0755 $HOME/.local;
+[ -d "$HOME/.config" ] && \
+	sudo chown $USER:$S_GROUP $HOME/.config && \
+	sudo chmod -R 0755 $HOME/.config;
+[ -d "$HOME/.rbenv" ] && \
+	sudo chown $USER:$S_GROUP $HOME/.rbenv && \
+	sudo chmod -R 0755 $HOME/.rbenv;
 
 unset S_GROUP;
-
-sudo chmod -R 0755 $HOME/bin;
-sudo chmod -R 0755 $HOME/.local;
-sudo chmod -R 0755 $HOME/.config;
-sudo chmod -R 0755 $HOME/.rbenv;
 
 sudo apt autoremove -y;
