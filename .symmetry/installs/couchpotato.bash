@@ -36,7 +36,7 @@ EOF
 	sudo chmod +x /etc/init.d/couchpotato;
 	sudo update-rc.d couchpotato defaults
 
-	sudo chown $cpuser:media ${install_dir} -rv;
+	sudo chown -Rv $cpuser:media ${install_dir};
 
 	sudo /etc/init.d/couchpotato start;
 

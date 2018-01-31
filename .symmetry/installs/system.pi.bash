@@ -27,7 +27,7 @@ mkdir -p $HOME/bin;
 sudo pip install --upgrade awscli;
 sudo pip install pylint behave --upgrade;
 
-sudo chown $USER:$S_GROUP -r $HOME/bin;
+sudo chown -R $USER:$S_GROUP $HOME/bin;
 
 sudo chmod -R 0755 $HOME/bin;
 

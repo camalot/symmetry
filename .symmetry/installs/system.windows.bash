@@ -33,7 +33,7 @@ mkdir -p $HOME/bin;
 sudo pip install --upgrade awscli;
 sudo pip install pylint behave --upgrade;
 
-sudo chown $USER:$S_GROUP -r $HOME/bin;
+sudo chown -R $USER:$S_GROUP $HOME/bin;
 sudo chown $USER:$S_GROUP $HOME/.local;
 sudo chown $USER:$S_GROUP $HOME/.config;
 sudo chown $USER:$S_GROUP $HOME/.rbenv;
