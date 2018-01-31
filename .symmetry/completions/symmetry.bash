@@ -8,7 +8,7 @@ function __symmetry_completion() {
 	local prev2="${COMP_WORDS[COMP_CWORD-2]}";
 
 	local words="--help --version install init set-prompt get-prompt list load";
-	local list_actions=$(for d in $(ls ~/.symmetry/); do d=${d%*/}; echo ${d##*/}; done;);
+	local list_actions=$(for d in $(ls --color=never ~/.symmetry/); do d=${d%*/}; echo ${d##*/}; done;);
 	case "${prev}" in
 		install)
 			if [ -d "$HOME/.symmetry/installs" ]; then
@@ -29,7 +29,7 @@ function __symmetry_completion() {
 		set-prompt)
 			if [ -d "$HOME/.symmetry/prompts" ]; then
 				# all non-system specific files and 'this' file
-				local FILES="$HOME/.symmetry/prompts/*.bash";
+				local FILES="$HOME/.symmetry/prompts/!(._*).bash";
 				local names=$(for f in $FILES; do f=${f##*/}; echo ${f%.bash}; done; );
 				COMPREPLY=( $(compgen -W "${names}" -- ${cur}) );
 			fi
