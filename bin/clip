@@ -1,13 +1,13 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import sys
 
 # Clipboard storage
 clipboard_file = '/tmp/clipboard.tmp'
 
-if(sys.stdin.isatty()): # Should write clipboard contents out to stdout
+if sys.stdin.isatty(): # Should write clipboard contents out to stdout
     with open(clipboard_file, 'r') as c:
         sys.stdout.write(c.read())
-elif(sys.stdout.isatty()): # Should save stdin to clipboard
+elif sys.stdout.isatty(): # Should save stdin to clipboard
     with open(clipboard_file, 'w') as c:
         c.write(sys.stdin.read())

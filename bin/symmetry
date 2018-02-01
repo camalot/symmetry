@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
+# shellcheck source=/dev/null
 source $HOME/.symmetry/functions/._symmetry.bash || exit 2;
 
 SYMMETRY_VERSION='0.0.2';
 SYMMETRY_AUTHOR='Ryan Conrad';
+# shellcheck disable=SC2034
 SYMMETRY_PLATFORM=$(__symmetry_platform);
 SYMMETRY_URL='https://github.com/camalot/symmetry';
 
@@ -28,23 +30,24 @@ __process_commands() {
 			echo "Symmetry v$SYMMETRY_VERSION";
 		;;
 		list)
-			__list_actions ${@:2};
+			__list_actions "${@:2}";
 		;;
 		load)
-			__execute_action ${@:2};
+			__execute_action "${@:2}";
 		;;
 		install)
-			__execute_action installs ${@:2};
+			__execute_action installs "${@:2}";
 		;;
 		init)
-			__execute_action initializers ${@:2};
+			__execute_action initializers "${@:2}";
 		;;
 		get-prompt)
+		#shellcheck disable=SC2155
 			local prompt_profile=$(if [[ $SYMMETRY_PROMPT = '' ]]; then echo 'default'; else echo $SYMMETRY_PROMPT; fi);
 			echo $prompt_profile;
 		;;
 		set-prompt)
-			load_prompt ${@:2};
+			load_prompt "${@:2}";
 			exec $SHELL -l;
 			;;
 		*)
@@ -77,11 +80,13 @@ __execute_action() {
 		if [ -f "$HOME/.symmetry/${action_group}/${action}.bash" ]; then
 			# source the specific system install file
 			echo "loading: $HOME/.symmetry/${action_group}/${action}.bash";
+			# shellcheck source=/dev/null
 			source $HOME/.symmetry/${action_group}/${action}.bash;
 		fi
 	elif [ $# -eq 1 ]; then
 		if [ -f "$HOME/.symmetry/${action_group}/default.bash" ]; then
 			echo "loading: $HOME/.symmetry/${action_group}/default.bash";
+			# shellcheck source=/dev/null
 			source $HOME/.symmetry/${action_group}/default.bash;
 		fi
 	fi
@@ -90,7 +95,7 @@ __execute_action() {
 if [ $# -eq 0 ]; then
 	__print_help;
 else
-	__process_commands $*;
+	__process_commands "$@";
 fi
 
 unset SYMMETRY_VERSION

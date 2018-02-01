@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# shellcheck disable=SC2128
 __symmetry_info "$BASH_SOURCE";
 
 
@@ -68,6 +69,7 @@ export LANG='en_US.UTF-8';
 export LC_ALL='en_US.UTF-8';
 
 # Highlight section titles in manual pages.
+yellow="\e[0;33;0m";
 export LESS_TERMCAP_md="${yellow}";
 
 # Dont clear the screen after quitting a manual page.
@@ -91,6 +93,7 @@ done;
 splatform=$(__symmetry_platform);
 if [ -f "$HOME/.symmetry/exports/.system.${splatform}.bash" ]; then
 	# source the specific system functions file
+	# shellcheck source=/dev/null
 	source $HOME/.symmetry/exports/.system.${splatform}.bash;
 fi
 unset splatform;

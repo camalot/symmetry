@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# shellcheck disable=SC2128
 __symmetry_info "$BASH_SOURCE";
 
 if $(__symmetry_platform) != "macos" > /dev/null 2>&1; then
@@ -8,7 +9,7 @@ if $(__symmetry_platform) != "macos" > /dev/null 2>&1; then
 fi
 
 if [ -L "$HOME/iCloud Drive" ] || [ -d "$HOME/iCloud Drive" ]; then
-	alias ic="$HOME/iCloud Drive";
+	alias ic="\$HOME/iCloud Drive";
 fi
 
 # PlistBuddy alias, because sometimes `defaults` just doesnt cut it

@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
+# shellcheck source=/dev/null
 source $HOME/.symmetry/functions/._symmetry.bash;
 source $HOME/.symmetry/functions/system.windows.bash;
 
-PS_WORKING_DIR=$(lxssdir);
+if command -v pwsh 2>&1 /dev/null; then
+	pwsh "$@";
+	exit $?;
+fi
+
+# PS_WORKING_DIR="$(lxssdir)";
 case "${1}" in
 	--[vV]ersion|-v)
 		powershell.exe -NoProfile -NoLogo -ExecutionPolicy ByPass "Write-Host \$PSVersionTable.PSVersion;";
@@ -18,4 +24,4 @@ case "${1}" in
 		fi
 	;;
 esac
-unset PS_WORKING_DIR;
+# unset PS_WORKING_DIR;

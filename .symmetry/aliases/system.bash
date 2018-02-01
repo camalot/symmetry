@@ -11,10 +11,7 @@ alias -- -="cd -";
 alias dl="cd ~/Downloads";
 alias dt="cd ~/Desktop";
 alias dev="cd ~/Development";
-alias g="git";
-alias got="git";
 alias gitpush="git push";
-alias nom="npm";
 alias h="history";
 alias j="jobs";
 alias n="nano";
@@ -33,18 +30,21 @@ else # macOS `ls`
 fi
 
 # List all files colorized in long format
-alias l="ls -lF ${colorflag}";
-
-alias ll="ls -lFA ${colorFlag}";
-
+# shellcheck disable=SC2139
+alias l="ls -lFh ${colorflag}";
+# shellcheck disable=SC2139
+alias ll="ls -lFAh ${colorflag}";
 # List all files colorized in long format, including dot files
-alias la="ls -laF ${colorflag}";
+# shellcheck disable=SC2139
+alias la="ls -laFh ${colorflag}";
 
 # List only directories
-alias lsd="ls -lF ${colorflag} | grep --color=never '^d'";
+# shellcheck disable=SC2139
+alias lsd="ls -lFh ${colorflag} | grep --color=never '^d'";
 
 # Always use color output for `ls`
-alias ls="command ls ${colorflag}";
+# shellcheck disable=SC2139
+alias ls="command ls -h ${colorflag}";
 
 # Always enable colored `grep` output
 # Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
@@ -56,7 +56,7 @@ alias egrep='egrep --color=auto';
 alias sudo='sudo ';
 
 # Reload the shell (i.e. invoke as a login shell)
-alias reload="exec $SHELL -l";
+alias reload="exec \$SHELL -l";
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}';
