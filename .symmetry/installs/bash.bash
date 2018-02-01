@@ -23,13 +23,13 @@ if [ -f "/usr/local/bin/bash" ]; then
 		echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
 	fi
 	# even if it is in the /etc/shells file, we still need to set it as the current shell
-	chsh -s /usr/local/bin/bash;
+	chsh -s /usr/local/bin/bash ${USER};
 elif [ -f "/bin/bash" ]; then
 	if ! fgrep -q '/bin/bash' /etc/shells; then
 		sudo echo /bin/bash >> /etc/shells;
 	fi
 	# even if it is in the /etc/shells file, we still need to set it as the current shell
-	sudo chsh -s /bin/bash;
+	sudo chsh -s /bin/bash ${USER};
 else
 	echo "Unable to locate the version of bash that was installed.";
 	exit 1;
