@@ -24,6 +24,8 @@
 	# Switch to a branch, creating it if necessary
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
 
+	init-ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi";
+
 	# Show verbose output about tags, branches or remotes
 	tags = tag -l
 	branches = branch -a
