@@ -21,7 +21,7 @@ brew install gnu-sed --with-default-names;
 
 source $HOME/.symmetry/installs/bash.bash;
 
-brew tap homebrew/versions;
+# brew tap homebrew/versions;
 brew install bash-completion2;
 
 brew install thefuck;
@@ -29,9 +29,12 @@ brew install thefuck;
 
 # Install more recent versions of some macOS tools.
 brew install vim --with-override-system-vi
-brew install homebrew/dupes/grep --with-default-names
-brew install homebrew/dupes/openssh
-brew install homebrew/dupes/screen
+# brew install homebrew/dupes/grep --with-default-names
+# brew install homebrew/dupes/openssh
+# brew install homebrew/dupes/screen
+brew install grep --with-default-names;
+brew install openssh;
+brew install screen;
 
 source $HOME/.symmetry/installs/ruby.bash;
 
@@ -59,8 +62,8 @@ brew install vbindiff;
 brew install webkit2png;
 brew install zopfli;
 
-brew cask install atom;
-brew cask install visual-studio-code;
+#brew cask install atom;
+#brew cask install visual-studio-code;
 brew cask install gitify;
 brew cask install gisto;
 
