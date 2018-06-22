@@ -44,7 +44,7 @@ fi
 
 export SYMMETRY_PROMPT=default;
 
-export GEM_HOME=$HOME/.rbenv/bin;
+export GEM_HOME=$HOME/.rbenv;
 
 # Make nano the default editor.
 export EDITOR='nano';
