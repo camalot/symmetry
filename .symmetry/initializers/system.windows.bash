@@ -115,20 +115,29 @@ fi
 unset lxss_win_googledrive;
 unset WIN_GOOGLEDRIVE;
 
+# lxss_win_userprofile=$(windir "$WIN_USERPROFILE_PATH");
+# if [ -e "$lxss_win_userprofile/.ssh" ]; then
+# 	if [ ! -e "$HOME/.ssh" ]; then
+# 		if [ -d "$HOME/.ssh" ]; then
+# 			mv "$HOME/.ssh" "$HOME/.ssh.old/";
+# 		fi
+# 		echo "mapping $HOME/.ssh => $lxss_win_userprofile/.ssh"
+# 		ln -s "$lxss_win_userprofile/.ssh" "$HOME/.ssh";
+# 		chmod 0600 "$HOME/.ssh/id_rsa";
+# 		chmod 0600 "$HOME/.ssh/id_rsa.pub";
+# 	fi
+# fi
+
+mkdir -p "$HOME/.ssh";
 lxss_win_userprofile=$(windir "$WIN_USERPROFILE_PATH");
 if [ -e "$lxss_win_userprofile/.ssh" ]; then
-	if [ ! -e "$HOME/.ssh" ]; then
-		if [ -d "$HOME/.ssh" ]; then
-			mv "$HOME/.ssh" "$HOME/.ssh.old/";
-		fi
-		echo "mapping $HOME/.ssh => $lxss_win_userprofile/.ssh"
-		ln -s "$lxss_win_userprofile/.ssh" "$HOME/.ssh";
+	if [ -d "$HOME/.ssh" ]; then
+		cp -r $lxss_win_userprofile/.ssh/* $HOME/.ssh/;
+
 		chmod 0600 "$HOME/.ssh/id_rsa";
 		chmod 0600 "$HOME/.ssh/id_rsa.pub";
 	fi
 fi
-
-mkdir -p "$HOME/.ssh";
 
 if [ -e "$lxss_win_userprofile/.aws" ]; then
 	if [ ! -e "$HOME/.aws" ]; then
