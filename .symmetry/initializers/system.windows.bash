@@ -26,14 +26,17 @@ WIN_ONEDRIVE=$(powershell.exe -NoLogo -ExecutionPolicy Bypass -NoProfile -Comman
 
 # if it matters, on macos and linux style systems, the info.json file is located at ~/.dropbox/info.json
 WIN_DROPBOX=$(powershell.exe -NoLogo -ExecutionPolicy Bypass -NoProfile -Command 'Get-Content "$ENV:LOCALAPPDATA\Dropbox\info.json" -ErrorAction Stop | ConvertFrom-Json | % personal | % path' 2> /dev/null || echo "$WIN_USERPROFILE_PATH\\Dropbox");
-WIN_BOXSYNC="$WIN_USERPROFILE_PATH\\Box Sync";
-WIN_GOOGLEDRIVE="$WIN_USERPROFILE_PATH\\Google Drive";
+# WIN_BOXSYNC="$WIN_USERPROFILE_PATH\\Box Sync";
+# WIN_GOOGLEDRIVE="$WIN_USERPROFILE_PATH\\Google Drive";
+WIN_BOXSYNC="$WIN_DEFAULT_USERDATA_DRIVE:\\Users\\$WIN_USER\\Box Sync";
+WIN_GOOGLEDRIVE="$WIN_DEFAULT_USERDATA_DRIVE:\\Users\\$WIN_USER\\Google Drive";
 
-WIN_DOWNLOAD=$(powershell.exe -NoLogo -ExecutionPolicy Bypass -NoProfile -Command '[Environment]::GetFolderPath("Downloads")' 2> /dev/null || echo "$WIN_USERPROFILE_PATH\\Downloads");
-
+# WIN_DOWNLOAD=$(powershell.exe -NoLogo -ExecutionPolicy Bypass -NoProfile -Command '[Environment]::GetFolderPath("Downloads")' 2> /dev/null || echo "$WIN_USERPROFILE_PATH\\Downloads");
+WIN_DOWNLOAD="$WIN_USERPROFILE_PATH\\Downloads";
 # WIN_PATH_DEVELOPMENT is set in .symmetryconfig
 if [[ $WIN_PATH_DEVELOPMENT ]]; then
 	lxss_development=$(windir "$WIN_PATH_DEVELOPMENT");
+	echo "${lxss_development}";
 	if [ -e "$lxss_development" ]; then
 		if [ ! -L "$HOME/Development" ]; then
 			echo "mapping $HOME/Development => $lxss_development";
@@ -45,6 +48,7 @@ fi
 mkdir -p "$HOME/Development";
 
 lxss_win_desktop=$(windir "$WIN_DESKTOP");
+echo "${lxss_win_desktop}";
 if [ -e "$lxss_win_desktop" ]; then
 	if [ ! -e "$HOME/Desktop" ]; then
 		echo "mapping $HOME/Desktop => $lxss_win_desktop";
@@ -56,6 +60,7 @@ unset lxss_win_desktop;
 unset WIN_DESKTOP;
 
 lxss_win_downloads=$(windir "$WIN_DOWNLOAD");
+echo "${lxss_win_downloads}";
 if [ -e "$lxss_win_downloads" ]; then
 	if [ ! -e "$HOME/Downloads" ]; then
 		echo "mapping $HOME/Downloads => $lxss_win_downloads";
@@ -68,6 +73,7 @@ unset WIN_DOWNLOAD;
 
 # when this gets set, it has some whitespace at the end that needs to be removed.
 lxss_win_dropbox=$(windir "$WIN_DROPBOX" | tr -d "\n\r" );
+echo "${lxss_win_dropbox}";
 if [ -e "$lxss_win_dropbox" ]; then
 	if [ ! -e "$HOME/Dropbox" ]; then
 		echo "mapping $HOME/Dropbox => $lxss_win_dropbox";
@@ -78,6 +84,7 @@ unset lxss_win_dropbox;
 unset WIN_DROPBOX;
 
 lxss_win_boxsync=$(windir "$WIN_BOXSYNC");
+echo "${lxss_win_boxsync}";
 if [ -e "$lxss_win_boxsync" ]; then
 	if [ ! -e "$HOME/Box Sync" ]; then
 		echo "mapping $HOME/Box Sync => $lxss_win_boxsync";
@@ -98,6 +105,7 @@ unset lxss_win_onedrive;
 unset WIN_ONEDRIVE;
 
 lxss_win_googledrive=$(windir "$WIN_GOOGLEDRIVE");
+echo "${lxss_win_googledrive}";
 if [ -e "$lxss_win_googledrive" ]; then
 	if [ ! -e "$HOME/Google Drive" ]; then
 		echo "mapping $HOME/Google Drive => $lxss_win_googledrive"
