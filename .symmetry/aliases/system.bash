@@ -25,8 +25,10 @@ alias wget="wget -c";
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color";
+	alias s_lsnc="command ls --color=never";
 else # macOS `ls`
 	colorflag="-G";
+	alias s_lsnc="command ls";
 fi
 
 # List all files colorized in long format

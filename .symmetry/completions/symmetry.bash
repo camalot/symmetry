@@ -8,7 +8,8 @@ function __symmetry_completion() {
 	local prev2="${COMP_WORDS[COMP_CWORD-2]}";
 
 	local words="--help --version install init set-prompt get-prompt list load";
-	local list_actions=$(for d in $(ls --color=never ~/.symmetry/); do d=${d%*/}; echo ${d##*/}; done;);
+	# s_lsnc is an alias to `ls --color=never` based on platform.
+	local list_actions=$(for d in $(s_lsnc ~/.symmetry/); do d=${d%*/}; echo ${d##*/}; done;);
 	case "${prev}" in
 		install)
 			if [ -d "$HOME/.symmetry/installs" ]; then

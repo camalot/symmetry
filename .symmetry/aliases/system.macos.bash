@@ -24,3 +24,4 @@ alias badge="tput bel";
 alias cleanup="find . -type f -name '*.DS_Store' -ls -delete";
 
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup; pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U';
+
