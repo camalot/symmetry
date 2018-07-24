@@ -118,8 +118,8 @@ _set_prompt() {
 		fi
 		local package_name package_version package_content;
 		package_content=$(cat ./package.json);
-		package_version=$(echo $package_content | jq '.version');
-		package_name=$(echo $package_content | jq '.name');
+		package_version=$(echo $package_content | jq -r '.version');
+		package_name=$(echo $package_content | jq -r '.name');
 		echo -e " ${pfg_purple}[${package_name} v${package_version}]";
 	}
 	# set the default text color. this only works in tty (eg $TERM == "linux"), not pts (eg $TERM == "xterm")
