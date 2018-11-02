@@ -15,6 +15,8 @@ fi
 # PlistBuddy alias, because sometimes `defaults` just doesnt cut it
 alias plistbuddy="/usr/libexec/PlistBuddy";
 
+alias timeout="gtimeout";
+
 
 # Ring the terminal bell, and put a badge on Terminal.apps Dock icon
 # (useful when executing time-consuming commands)
