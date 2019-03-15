@@ -96,4 +96,11 @@ if [ -f "$HOME/.symmetry/exports/.system.${splatform}.bash" ]; then
 	# shellcheck source=/dev/null
 	source $HOME/.symmetry/exports/.system.${splatform}.bash;
 fi
+
+
+if [ -d "$HOME/.pyenv" ]; then
+	export PYENV_ROOT="$HOME/.pyenv"
+	export PATH="$PYENV_ROOT/bin:$PATH"
+fi
+
 unset splatform;
