@@ -34,6 +34,10 @@ if [ -d "$HOME/.ssh" ] && [ -f $auth_keys ]; then
 	fi
 fi
 
+if command -v pyenv 1>/dev/null 2>&1; then
+	eval "$(pyenv init -)";
+fi
+
 
 if command -v chef > /dev/null 2>&1; then
 	eval $(chef shell-init $SHELL);
