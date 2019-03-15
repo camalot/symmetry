@@ -14,7 +14,11 @@ _ruby_install() {
 
 		;;
 		windows|pi|ubuntu|debian)
-			sudo apt install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev nodejs -y;
+			sudo apt install \
+			  autoconf bison libreadline6-dev zlib1g-dev libncurses5-dev libgdbm5 libgdbm-dev \
+				git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev \
+				libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties \
+				libffi-dev nodejs -y;
 
 			git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv;
 			git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build;
