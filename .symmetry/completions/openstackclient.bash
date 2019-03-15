@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-
-$(openstack complete);
+if command -v openstack > /dev/null 2>&1; then
+	$(openstack complete);
+fi
