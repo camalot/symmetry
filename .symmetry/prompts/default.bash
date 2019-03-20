@@ -12,7 +12,15 @@ _set_prompt() {
 		export TERM='gnome-256color';
 	elif infocmp xterm-256color >/dev/null 2>&1; then
 		export TERM='xterm-256color';
+	else
+		export TERM='xterm-256color';
 	fi;
+
+
+	if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+		source /etc/profile.d/vte.sh
+	fi
+
 	prompt_git() {
 		local s='';
 		local branchName='';
@@ -225,6 +233,8 @@ _set_prompt() {
 	else
 	  prompt_symbol="\$"
 	fi
+
+	VTE_PWD_THING="$(__vte_osc7)";
 	# Set the terminal title and prompt.
 	#trap 'echo -ne "\033]0;$BASH_COMMAND\007"' DEBUG
 	PS1="\[\033]0;\u@\H | \W\007\]"; # working directory base name
@@ -237,10 +247,10 @@ _set_prompt() {
 	PS1+="\$(prompt_npm)";
 	PS1+="\$(prompt_git)"; # Git repository details
 	PS1+="\n";
-	PS1+="\[${pfg_white}\]\[${prompt_symbol}\] \[${reset}\]"; # `$` (and reset color)
+	PS1+="\[${pfg_white}\]\[${prompt_symbol}\] \[${reset}\]$VTE_PWD_THING"; # `$` (and reset color)
 	export PS1;
 
-	PS2="\[${pfg_yellow}\] \[${reset}\]";
+	PS2="\[${pfg_yellow}\] \[${reset}\]$VTE_PWD_THING";
 	export PS2;
 }
 
