@@ -163,8 +163,10 @@ function __load_config_files() {
 }
 
 function __load_local_files() {
+	local platform=$(__symmetry_platform);
+
 	shopt -s dotglob
-	for file in $HOME/.{${system},path,bash_logout,extra}; do
+	for file in $HOME/.{${platform},path,extra}; do
 		[ -r "$file" ] && [ -f "$file" ] && source "$file";
 	done;
 }

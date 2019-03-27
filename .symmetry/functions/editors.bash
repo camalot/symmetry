@@ -28,3 +28,11 @@ function v() {
 		vim "$@";
 	fi;
 }
+
+function c() {
+	if [ $# -eq 0 ]; then
+		code .;
+	else
+		code "$@";
+	fi;
+}

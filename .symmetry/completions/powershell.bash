@@ -16,4 +16,4 @@ function __powershell_completion() {
 	COMPREPLY=($(compgen -W "${words}" -- ${cur}));
 	return 0;
 }
-complete -F __powershell_completion powershell;
+complete -F __powershell_completion pwsh;

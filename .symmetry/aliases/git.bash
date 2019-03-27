@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if command -v git 2>&1 /dev/null; then
+if command -v git >& /dev/null; then
 	alias g="git";
 	alias got="git";
 fi

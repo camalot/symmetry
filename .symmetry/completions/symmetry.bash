@@ -55,4 +55,7 @@ function __symmetry_completion() {
 	COMPREPLY=($(compgen -W "${words}" -- ${cur}));
 	return 0;
 }
+
 complete -F __symmetry_completion symmetry;
+
+

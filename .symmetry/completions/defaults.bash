@@ -8,6 +8,10 @@
 # Version 1.0 (2006-11-08)
 
 
+if __symmetry_platform != "macos" > /dev/null 2>&1; then
+	return
+fi
+
 _defaults_domains()
 {
     local cur

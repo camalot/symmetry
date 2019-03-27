@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+
+
 source $HOME/.symmetry/functions/._symmetry.bash;
 __load_config_files 'functions';
 
@@ -19,4 +21,4 @@ fi
 
 load_prompt;
 
-__system_logo;
+# __system_logo;
