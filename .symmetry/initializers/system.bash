@@ -53,3 +53,4 @@ chmod +x $HOME/bin/symmetry;
 chmod +x $HOME/bin/powershell;
 chmod +x $HOME/bin/keychain;
 chmod +x $HOME/bin/clip;
+chmod +x $HOME/bin/semver;
