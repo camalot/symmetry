@@ -45,7 +45,7 @@ semver_compare() {
   do
     cursor=$((cursor+1))
   done
-  [ "${arr_version_a[$cursor]}" -gt "${arr_version_b[$cursor]}" ] && echo 1 || echo -1
+  [ "${arr_version_a[$cursor]}" -gt "${arr_version_b[$cursor]}" ] && echo -ne 1 || echo -ne -1
 }
 
-[ -n "$1" ] && echo $(semver_compare $1 $2)
+[ -n "$1" ] && echo -ne $(semver_compare $1 $2)
