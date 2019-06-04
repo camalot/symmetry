@@ -43,6 +43,14 @@ if command -v chef > /dev/null 2>&1; then
 	eval $(chef shell-init $SHELL);
 fi
 
+if [ -e /etc/profile.d/rvm.sh ]; then
+	source /etc/profile.d/rvm.sh;
+fi
+
+if command rbenv > /dev/null 2>&1; then
+	eval "$(rbenv init -)";
+fi
+
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
 	if [ -e /etc/profile.d/vte.sh ]; then
 		source /etc/profile.d/vte.sh
