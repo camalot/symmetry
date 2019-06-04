@@ -101,10 +101,12 @@ if [ -f "$HOME/.symmetry/exports/.system.${splatform}.bash" ]; then
 	source $HOME/.symmetry/exports/.system.${splatform}.bash;
 fi
 
-
 if [ -d "$HOME/.pyenv" ]; then
-	export PYENV_ROOT="$HOME/.pyenv"
-	export PATH="$PYENV_ROOT/bin:$PATH"
+	if [[ -z "${PYENV_ROOT// }" ]]; then
+		export PYENV_ROOT="$HOME/.pyenv"
+	fi
+	if [[ ! ":$PATH:" == *"$PYENV_ROOT/bin:"* ]]; then
+		export PATH="$PYENV_ROOT/bin:$PATH"
+	fi
 fi
-
 unset splatform;
