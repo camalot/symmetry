@@ -11,4 +11,3 @@ sudo mv go /usr/local;
 
 rm "go${GO_VERSION}.linux-amd64.tar.gz";
 
-mkdir -p $HOME/work;

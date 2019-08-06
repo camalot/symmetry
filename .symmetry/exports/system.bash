@@ -109,4 +109,11 @@ if [ -d "$HOME/.pyenv" ]; then
 		export PATH="$PYENV_ROOT/bin:$PATH"
 	fi
 fi
+
+
+if [ -d "/usr/local/go/bin" ]; then
+	if [[ ! ":$PATH:" == *"/usr/local/go/bin:"* ]]; then
+	export PATH="/usr/local/go/bin:$PATH";
+	fi
+fi
 unset splatform;
