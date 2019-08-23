@@ -5,4 +5,4 @@ if command -v git >& /dev/null; then
 	alias got="git";
 fi
 
-function gi() { curl -L -s https://www.gitignore.io/api/\$@ ;}
+function gi() { curl -L -s https://www.gitignore.io/api/$@ ;};
