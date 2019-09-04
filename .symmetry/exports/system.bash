@@ -46,6 +46,10 @@ if [ -d "/usr/local/go" ] && [[ ! ":$PATH:" == *":/usr/local/go:"* ]]; then
 	export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin;
 fi
 
+if [ -d "$HOME/.local/bin" ] && [[ ! ":$PATH:" == *":$HOME/.local/bin:"* ]]; then
+	export PATH="$HOME/.local/bin:$PATH";
+fi
+
 export SYMMETRY_PROMPT=default;
 
 export GEM_HOME=$HOME/.rbenv;
