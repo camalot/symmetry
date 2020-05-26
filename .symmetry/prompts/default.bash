@@ -18,7 +18,9 @@ _set_prompt() {
 
 
 	if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-		source /etc/profile.d/vte.sh
+		if [ -e /etc/profile.d/vte.sh ]; then
+			source /etc/profile.d/vte.sh;
+		fi
 	fi
 
 	prompt_git() {
